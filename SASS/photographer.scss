@@ -10,6 +10,16 @@
   }
 }
 
+.likesNprice {
+  height: 50px;
+
+  &__heart i {
+    font-size: 24px;
+    color: black;
+
+  }
+}
+
 #contact_modal {
   display: none;
 }

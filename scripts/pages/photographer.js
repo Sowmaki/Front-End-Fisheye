@@ -29,7 +29,7 @@ async function recupererPhotographe() {
 
 const displayProfileData = (photographer) => {
   //On recupère l'endroit précis où on veut afficher nos datas
-  const photographerHeader = document.getElementById("main");
+  const photographerMain = document.getElementById("main");
 
   //On crée un photographerModel en appelant la fonction qui récupère les datas des photographes
   const photographerModel = photographerTemplate(photographer);
@@ -38,7 +38,7 @@ const displayProfileData = (photographer) => {
   const userProfileDOM = photographerModel.getUserProfileDOM();
 
   //On envoie ce profil dans la section photograph-header
-  photographerHeader.appendChild(userProfileDOM);
+  photographerMain.appendChild(userProfileDOM);
 
 }
 
