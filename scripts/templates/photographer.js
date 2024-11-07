@@ -122,6 +122,8 @@ function photographerTemplate(data) {
 
 
 
+
+
     return { nom, photo, ville, slogan, prix, id, getUserCardDOM, getUserProfileDOM, }
 
 }

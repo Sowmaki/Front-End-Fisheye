@@ -307,7 +307,7 @@
       "file": "assets/photographers_medias/527/Travel_Outdoor_Baths.jpgg",
       "description": "People bathing in hot springs with large clouds of steam.",
       "category": "Travel",
-      "likes": ,
+      "likes": 42,
       "type": "image"
     },
     {
@@ -355,7 +355,7 @@
     {
       "title": "Keyboard Check",
       "file": "assets/photographers_medias/925/Event_KeyboardCheck.jpg",
-      "description": ,
+      "description": "Woman playing a synthesizer.",
       "category": "Event",
       "likes": 44,
       "type": "image"
@@ -363,7 +363,7 @@
     {
       "title": "Product Pitch",
       "file": "assets/photographers_medias/925/Event_ProductPitch.jpg",
-      "description": "Woman playing a synthesizer.",
+      "description": "Photo taken during a conference. A man is talking",
       "category": "Event",
       "likes": 48,
       "type": "image"
@@ -371,7 +371,7 @@
     {
       "title": "Venture Conference",
       "file": "assets/photographers_medias/925/Event_VentureConference.jpg",
-      "description": "Photo taken during a conference. A man is talking",
+      "description": "Photo during a work meeting, featuring a woman in front of a large whiteboard covered with colorful sticky notes.",
       "category": "Event",
       "likes": 57,
       "type": "image"
@@ -379,7 +379,7 @@
     {
       "title": "Melody Red on Stripes",
       "file": "assets/photographers_medias/925/Fashion_Melody_Red_on_Stripes.jpg",
-      "description": "Photo during a work meeting, featuring a woman in front of a large whiteboard covered with colorful sticky notes.",
+      "description": "A woman is in the stairs with a red dress and white derbies",
       "category": "Fashion",
       "likes": 29,
       "type": "image"

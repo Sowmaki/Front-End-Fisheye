@@ -17,7 +17,7 @@ async function getPhotographers() {
 
 }
 
-async function getPhotographersMedia() {
+async function getPhotographersFactory() {
 
   try {
     const response = await fetch('data/photographersMedia.json')
@@ -25,8 +25,8 @@ async function getPhotographersMedia() {
       throw new Error('could not fetch data')
     }
 
-    const data = await response.json()
-    return data
+    const mediaData = await response.json()
+    return mediaData
 
   }
   catch (error) {
@@ -34,3 +34,5 @@ async function getPhotographersMedia() {
   }
 
 }
+
+getPhotographersFactory()

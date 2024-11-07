@@ -1,5 +1,8 @@
-.hero {
+.main-container {
+  padding: 0 100px
+}
 
+.hero {
 
   &__img {
 
@@ -19,6 +22,44 @@
 
   }
 }
+
+/*** FACTORY ***/
+
+.medias-list {
+  width: fit-content;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 95px;
+}
+
+.item {
+  width: 28%;
+  height: 350px;
+
+  &__media {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  &__link {}
+
+  &__bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__description {
+    display: none;
+  }
+}
+
+
 
 #contact_modal {
   display: none;

@@ -38,8 +38,9 @@ const displayProfileData = (photographer) => {
   const userProfileDOM = photographerModel.getUserProfileDOM();
 
   //On envoie ce profil dans la section photograph-header
-  photographerMain.appendChild(userProfileDOM);
+  photographerMain.prepend(userProfileDOM);
 
 }
 
 recupererPhotographe()
+
