@@ -1,15 +1,11 @@
-function sortMedias() {
-  const sortOptions = document.getElementById("sort-options")
-  console.log(sortOptions);
-
+export function sortMedias() {
+  const sortOptions = document.getElementById("sort-options");
 
   sortOptions.addEventListener('change', (event) => {
     if (event.target.value === "popularity") {
-      console.log("Option 'pop' has been selected!");
-    } else { console.log("pasd event") }
+      mediasData.sort((a, b) => b.likes - a.likes)
+
+      displaymediasData(mediasData)
+    } else { console.log("pa sd event") }
   })
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-  sortMedias();
-});

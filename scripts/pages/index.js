@@ -1,4 +1,5 @@
-
+import { getPhotographers } from "../data.js";
+import { photographerTemplate } from "../templates/photographer.js";
 
 
 async function displayData(photographers) {
@@ -8,7 +9,7 @@ async function displayData(photographers) {
         //pour chaque photographe, on crée un photographerModel en appelant la fonction qui récupère les datas des photographes
         const photographerModel = photographerTemplate(photographer);
         //On applique a ce photographerModel la fonction qui crée une card à partir des données
-        const userCardDOM = photographerModel.getUserCardDOM();
+        const userCardDOM = photographerModel.createUserCardDOM();
         //On envoie cette card dans la section photographers__Section
         photographersSection.appendChild(userCardDOM);
     });

@@ -412,7 +412,7 @@
   "930": [
     {
       "title": "Connected Curves",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Architecture_Connected_Curves.jpg",
+      "file": "assets/photographers_medias/930/Architecture_Connected_Curves.jpg",
       "description": "Buildings with large curved lines.",
       "category": "Architecture",
       "likes": 39,
@@ -420,7 +420,7 @@
     },
     {
       "title": "Cross Bar",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Architecture_Cross_Bar.jpg",
+      "file": "assets/photographers_medias/930/Architecture_Cross_Bar.jpg",
       "description": "Buildings facing each other, viewed from below, forming a white cross with the blue sky above.",
       "category": "Architecture",
       "likes": 17,
@@ -428,7 +428,7 @@
     },
     {
       "title": "Horse Shoe",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Architecture_Horseshoe.jpg",
+      "file": "assets/photographers_medias/930/Architecture_Horseshoe.jpg",
       "description": "Building with a curved structure and lines converging towards the sky, horse shoe shaped.",
       "category": "Architecture",
       "likes": 83,
@@ -436,7 +436,7 @@
     },
     {
       "title": "Water on Modern",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Architecture_Water_on_Modern.jpg",
+      "file": "assets/photographers_medias/930/Architecture_Water_on_Modern.jpg",
       "description": "Building appearing to float on water, shaped like waves.",
       "category": "Architecture",
       "likes": 38,
@@ -444,7 +444,7 @@
     },
     {
       "title": "White Light",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Architecture_White_Light.jpg",
+      "file": "assets/photographers_medias/930/Architecture_White_Light.jpg",
       "description": "Light hole inside a building, shaped like a snowflake.",
       "category": "Architecture",
       "likes": 53,
@@ -452,7 +452,7 @@
     },
     {
       "title": "Jump",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Sport_Jump.jpg",
+      "file": "assets/photographers_medias/930/Sport_Jump.jpg",
       "description": "Man jumping with his skateboard in a skatepark by the seaside.",
       "category": "Sport",
       "likes": 98,
@@ -460,7 +460,7 @@
     },
     {
       "title": "Next Hold",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Sport_Next_Hold.jpg",
+      "file": "assets/photographers_medias/930/Sport_Next_Hold.jpg",
       "description": "Woman climbing a rock wall with the help of blue chalk.",
       "category": "Sport",
       "likes": 38,
@@ -468,7 +468,7 @@
     },
     {
       "title": "Race End",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Sport_Race_End.jpg",
+      "file": "assets/photographers_medias/930/Sport_Race_End.jpg",
       "description": "Several runners training on a track.",
       "category": "Sport",
       "likes": 18,
@@ -476,7 +476,7 @@
     },
     {
       "title": "Sky Cross",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Sport_Sky_Cross.jpg",
+      "file": "assets/photographers_medias/930/Sport_Sky_Cross.jpg",
       "description": "Low-angle view of a skier jumping.",
       "category": "Sport",
       "likes": 35,
@@ -484,7 +484,7 @@
     },
     {
       "title": "Tricks in the Air",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/Sport_Tricks_in_the_air.mp4",
+      "file": "assets/photographers_medias/930/Sport_Tricks_in_the_air.mp4",
       "description": "Woman hanging by one arm, spinning around while performing acrobatics.",
       "category": "Sport",
       "likes": 27,
@@ -492,11 +492,11 @@
     },
     {
       "title": "Water Tunnel",
-      "file": "Front-End-Fisheye/assets/photographers_medias/930/sport_water_tunnel.jpg",
+      "file": "assets/photographers_medias/930/sport_water_tunnel.jpg",
       "description": "Surfer inside a wave tunnel.",
       "category": "Sport",
       "likes": 65,
-      "type": "video"
+      "type": "image"
     }
   ]
 }

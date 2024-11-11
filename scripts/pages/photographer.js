@@ -1,9 +1,8 @@
-
+import { getPhotographers } from "../data.js";
+import { photographerTemplate } from "../templates/photographer.js";
 
 // Lorsqu'on arrive sur la page photographer.html, on recupère le paramètre id grace à la fonction URLSearchParams
 const id = parseInt(new URLSearchParams(location.search).get("id"))
-
-
 
 //On crée une fonction qui va récupérer le bon photographe dans le tableau du fichier .json
 
@@ -35,7 +34,7 @@ const displayProfileData = (photographer) => {
   const photographerModel = photographerTemplate(photographer);
 
   //On applique a ce photographerModel la fonction qui crée un profil à partir des données
-  const userProfileDOM = photographerModel.getUserProfileDOM();
+  const userProfileDOM = photographerModel.createUserProfileDOM();
 
   //On envoie ce profil dans la section photograph-header
   photographerMain.prepend(userProfileDOM);
@@ -43,4 +42,14 @@ const displayProfileData = (photographer) => {
 }
 
 recupererPhotographe()
+
+// parametrage des cliquables pour qu'ils soient activés avec la barre espace également:
+const clickables = document.querySelectorAll('a', 'button')
+
+clickables.forEach(link => link.addEventListener('keydown', (event) => {
+  if (event.key === "Enter" || event.key === "Space" || event.key === " ") {
+    event.preventDefault()
+    link.click()
+  }
+}))
 

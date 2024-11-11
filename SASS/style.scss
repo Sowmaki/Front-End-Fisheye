@@ -7,8 +7,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
+main {
+  padding: 0 100px;
+  max-width: 1440px;
+
+}
 
 header {
   display: flex;

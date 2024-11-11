@@ -1,34 +1,26 @@
+import { getPhotographersMedias } from "../data.js";
+import { displayLightbox } from "../utils/lightbox.js";
+import { sortMedias } from "../utils/sortMedias.js";
 
-function photographerFactoryTemplate(factoryData) {
-  const { title, file, description, likes, type } = factoryData;
+function photographerMediasTemplate(mediasData) {
+  const { title, file, description, likes, type } = mediasData[0];
+
+  function getUserMediasDOM() {
+
+    const divMedias = document.createElement("section");
+    divMedias.className = "medias";
 
 
-  function getUserFactoryDOM() {
-
-    const divFactory = document.createElement("section");
-    divFactory.className = "factory";
-
-    /*****************************************************DivTri */
-    const divTri = document.createElement("div");
-    divTri.className = "sort"
-    divTri.innerHTML =
-      `<label for="sort__options">Trier par :</label>
-    <select id="sort-options" class="sort__selector" aria-label="Options de tri">
-      <option id="popularity-option" value="popularity">Popularité</option>
-      <option id="date-option" value="date">Date</option>
-      <option id="title-option" value="title">Titre</option>
-    </select>`
-
-    /*****************************************************Factory */
+    /*****************************************************MEDIAS */
 
     const mediasList = document.createElement("ul")
     mediasList.className = "medias-list";
 
-    divFactory.appendChild(mediasList);
+    divMedias.appendChild(mediasList);
 
     // Pour chaque élément (photo) du tableau, on crée un élément li contenant les "articles" et on l'ajoute à la liste ul qui contient ceci
 
-    factoryData.forEach(media => {
+    mediasData.forEach(media => {
       //on crée une variable qui compte le nombre de video pour les numéroter si il y en a plusieurs
       let nbVideo = 0
 
@@ -38,6 +30,9 @@ function photographerFactoryTemplate(factoryData) {
       const mediaLink = document.createElement("a")
       mediaLink.className = "item-link"
       mediaLink.setAttribute("href", "#")
+      mediaLink.addEventListener('click', () => {
+        displayLightbox()
+      })
 
       const mediaTitle = document.createElement("h2");
       mediaTitle.textContent = media.title;
@@ -47,9 +42,11 @@ function photographerFactoryTemplate(factoryData) {
       const itemBottom = document.createElement("div");
       itemBottom.className = "item__bottom";
 
-      const itemLikes = document.createElement("span");
-      itemLikes.className = "item__spanlikes";
-      itemLikes.innerHTML = `${media.likes} <i class="fa-solid fa-heart" aria-label="likes"></i>`
+      const itemLikes = document.createElement("p");
+      itemLikes.className = "item__plikes";
+      const likesNb = document.createElement("span");
+      likesNb.content = media.likes;
+      itemLikes.innerHTML = `${media.likes} '<i class="fa-solid fa-heart" aria-label="likes"></i>`
 
       itemBottom.appendChild(mediaTitle)
       itemBottom.appendChild(itemLikes)
@@ -62,8 +59,8 @@ function photographerFactoryTemplate(factoryData) {
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaImg);
       } else if (media.type === "video") {
-        //on incrémente nbVideo
-        nbVideo++
+
+        nbVideo++  //incrémente nbVideo
 
         //on crée un span de description pour la video
         const spanDescription = document.createElement("span");
@@ -80,107 +77,62 @@ function photographerFactoryTemplate(factoryData) {
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaVideo);
         mediaLink.appendChild(spanDescription);
+
+        // mediaVideo.addEventListener('click',(event)=>launchLightbox(mediaVideo))
       }
 
       mediasList.appendChild(mediaItem);
       mediaItem.appendChild(itemBottom);
 
+
+      // function launchLightbox(media){
+
+      // }
+
     });
-    divFactory.appendChild(divTri);
-    divFactory.appendChild(mediasList);
 
+    divMedias.appendChild(mediasList);
 
-    return divFactory;
+    sortMedias()
+
+    return divMedias;
   };
 
-  return { title, file, description, likes, type, getUserFactoryDOM };
-
+  return { title, file, description, likes, type, getUserMediasDOM };
 
 }
 
-async function displayFactoryData(factory) {
-  const factorySection = document.querySelector(".main-container");
-  const photographerFactoryModel = photographerFactoryTemplate(factory);
-  const userFactoryDOM = photographerFactoryModel.getUserFactoryDOM();
-  factorySection.appendChild(userFactoryDOM);
-  ;
+async function displaymediasData(medias) {
+  const main = document.querySelector("main"); //recupere l'endroit ou vont etre affichés les medias
+
+  // supprime l'element medias du main s'il existe deja
+  main.querySelector(".medias")?.remove()
+
+  const photographerMediasModel = photographerMediasTemplate(medias); //
+  const userMediasDOM = photographerMediasModel.getUserMediasDOM();
+  main.appendChild(userMediasDOM);
 }
 
-async function recupererFactoryPhotographe(id) {
+async function recupererMediasPhotographe(id) {
   const photographerID = parseInt(new URLSearchParams(location.search).get("id"))
 
-  const result = await getPhotographersFactory();
+  const result = await getPhotographersMedias();
 
-  const photographersFactory = result
+  const photographersMedia = result
 
   //On parcourt le tableau d'IDs pour y TROUVER le ID , identique a  notre variable id.
 
-  // const selectedFactory = photographersFactory[id]
+  // const selectedMedias = photographersMedia[id]
 
-  const selectedFactory = photographersFactory[photographerID]
+  const selectedMedias = photographersMedia[photographerID]
 
   // On stoppe la fonction si le bon photographe n'est pas retrouvé et on lance une alerte pour l'utilisateur.
-  if (!selectedFactory) {
-    alert(`Aucune factory ne correspond à l'id ${id}`)
+  if (!selectedMedias) {
+    alert(`Aucun media ne correspond à l'id ${id}`)
     return
   }
   // Si le bon photographe est retrouvé, on lance la fonction qui permet d'afficher ses datas.
-  displayFactoryData(selectedFactory)
+  displaymediasData(selectedMedias)
 }
 
-recupererFactoryPhotographe()
-
-
-
-
-
-
-
-//
-// // Element li
-// // <li class="medias__element">
-// //   <a href="">
-// //     <div className="infos">
-// //       <h3></h3>
-// //       <p><span></span></p>
-// //     </div>
-// //     <img src="" alt="" />
-
-// //   </a>
-// // </li>
-
-
-
-// //***************************************************FactoryMedia
-// factorySection = document.createElement("section");
-// factorySection.className = "factory";
-// // div Tri
-// const content =
-// <div class="divTri">
-//   `<label for="sort__options">Trier par :</label>
-//       <select id="sort__options" class="sort__selector" aria-label="Options de tri">
-//           <option value="popularity">Popularité</option>
-//           <option value="date">Date</option>
-//           <option value="title">Titre</option>
-//       </select>`
-//</div>
-
-// divTri = document.createElement("div");
-// divTri.className = "sort__container";
-// divTri.innerHTML = content;
-
-// const divMedia = document.createElement("div");
-// divMedia.className = "medias-container";
-
-// const mediaList = document.createElement("ul")
-// mediaList.className = "medias-list";
-
-// //On récupère le tableau des photos du photographe dont l'id est sélectionné.
-// 
-
-
-
-
-
-
-
+recupererMediasPhotographe()

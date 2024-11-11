@@ -1,6 +1,6 @@
 
 
-function photographerTemplate(data) {
+export function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
     const photo = `assets/photographers/${portrait}`;
@@ -11,13 +11,19 @@ function photographerTemplate(data) {
     const prix = `${price}€/jour`;
     const ID = `${id}`;
 
-    function getUserCardDOM() {
+    function createUserCardDOM() {
         const article = document.createElement('article');
         const div = document.createElement('div');
 
         const a = document.createElement('a');
         a.className = "photographer__link";
         a.setAttribute("href", `photographer.html?id=${ID}`)
+        // a.addEventListener('keydown', (event) => {
+        //     if (event.code === 'Space') {
+        //         event.preventDefault();
+        //         a.click(); //Simule un clic pour rediriger vers l'adresse href
+        //     }
+        // });
 
         const img = document.createElement('img');
         img.className = "photographer__pic"
@@ -52,17 +58,12 @@ function photographerTemplate(data) {
 
     }
 
-    function getUserProfileDOM() {
-        // Div main-container
-        const mainContainer = document.createElement("div");
-        mainContainer.className = "main-container"
+    function createUserProfileDOM() {
 
         //********************************************** */ Div header
-        const header = document.createElement("header");
-        header.className = "hero"
+        const header = document.querySelector(".hero__header");
 
-        const divInfos = document.createElement('div');
-        divInfos.className = "hero__infos";
+        const divInfos = document.querySelector(".hero__infos");
 
         const h1 = document.createElement("h1");
         h1.textContent = nom;
@@ -80,20 +81,17 @@ function photographerTemplate(data) {
         divInfos.appendChild(villeTxt);
         divInfos.appendChild(sloganTxt);
 
-        const button = document.createElement("button");
-        button.className = "btn contact__button";
-        button.setAttribute("aria-label", "Contact Me");
-        button.textContent = "Contactez-moi"
-
         const img = document.createElement('img');
         img.className = "hero__img"
         img.setAttribute("src", photo)
         img.setAttribute("aria-label", `${nom}'s profile picture`);
 
-        header.appendChild(divInfos);
-        header.appendChild(button);
         header.appendChild(img);
 
+        return header
+    }
+
+    function createUserEncart() {
         //***************************************************Encart 
         const encart = document.createElement("aside");
         encart.className = "likesNprice";
@@ -113,18 +111,13 @@ function photographerTemplate(data) {
         encart.appendChild(likes);
         encart.appendChild(price);
 
-        mainContainer.appendChild(header);
-        mainContainer.appendChild(encart);
-
-        return (mainContainer)
+        return (encart)
 
     }
 
 
 
-
-
-    return { nom, photo, ville, slogan, prix, id, getUserCardDOM, getUserProfileDOM, }
+    return { createUserCardDOM, createUserProfileDOM, createUserEncart }
 
 }
 
