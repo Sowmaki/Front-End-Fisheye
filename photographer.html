@@ -30,7 +30,7 @@
     </div>
   </main>
 
-  <div id="contact_modal" class="modal" aria-describedby="modal_title">
+  <dialog id="contact_modal" class="modal" aria-describedby="modal_title">
 
     <header class="modal__header">
       <h2 class="modal__title" id="modal_title">Contactez-moi</h2>
@@ -63,7 +63,14 @@
       <button type="submit" class="btn modal__submit" aria-label="Close Contact form">Envoyer</button>
     </form>
 
-  </div>
+  </dialog>
+
+  <dialog class="lightbox">
+    <a href="" class="modal__closeBtn"><img src="assets/icons/close.svg" alt="Close dialog" /></a>
+    <div class="carousel">
+
+    </div>
+  </dialog>
 
   <script type="module" src="scripts/data.js" defer></script>
   <script type="module" src="scripts/templates/photographer.js" defer></script>
