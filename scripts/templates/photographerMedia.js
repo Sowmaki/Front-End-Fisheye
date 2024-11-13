@@ -2,6 +2,7 @@ import { getPhotographersMedias } from "../data.js";
 import { displayLightbox } from "../utils/lightbox.js";
 import { sortMedias } from "../utils/sortMedias.js";
 
+
 function photographerMediasTemplate(mediasData) {
   const { title, file, description, likes, type } = mediasData[0];
 
@@ -18,25 +19,28 @@ function photographerMediasTemplate(mediasData) {
 
     divMedias.appendChild(mediasList);
 
+    //on crée une variable qui compte le nombre de video pour les numéroter si il y en a plusieurs
+    let numMedia = 0;
+    let numVideo = 0;
     // Pour chaque élément (photo) du tableau, on crée un élément li contenant les "articles" et on l'ajoute à la liste ul qui contient ceci
-
-    mediasData.forEach(media => {
-      //on crée une variable qui compte le nombre de video pour les numéroter si il y en a plusieurs
-      let nbVideo = 0
+    mediasData.forEach((media, index) => {
+      numMedia++
 
       const mediaItem = document.createElement("li");
       mediaItem.className = "item";
 
       const mediaLink = document.createElement("a")
-      mediaLink.className = "item-link"
+      mediaLink.className = "item__link"
       mediaLink.setAttribute("href", "#")
-      mediaLink.addEventListener('click', () => {
-        displayLightbox()
-      })
+      mediaLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        displayLightbox(index); // Passer l'index du média cliqué à la lightbox
+      });
+
 
       const mediaTitle = document.createElement("h2");
       mediaTitle.textContent = media.title;
-      mediaTitle.id = "item-title";
+      mediaTitle.id = `item${numMedia}-title`;
       mediaTitle.classList.add("item__title")
 
       const itemBottom = document.createElement("div");
@@ -52,6 +56,7 @@ function photographerMediasTemplate(mediasData) {
       itemBottom.appendChild(itemLikes)
 
       if (media.type === "image") {
+
         const mediaImg = document.createElement("img");
         mediaImg.classList.add("item__media")
         mediaImg.src = media.file;
@@ -60,34 +65,29 @@ function photographerMediasTemplate(mediasData) {
         mediaLink.appendChild(mediaImg);
       } else if (media.type === "video") {
 
-        nbVideo++  //incrémente nbVideo
+        numVideo++  //incrémente numVideo
 
         //on crée un span de description pour la video
         const spanDescription = document.createElement("span");
-        spanDescription.id = `description${nbVideo}`;
+        spanDescription.id = `description${numVideo}`;
         spanDescription.className = "item__description";
         spanDescription.textContent = `${media.description}`
 
         const mediaVideo = document.createElement("video");
-        mediaVideo.setAttribute("aria-describedby", `description${nbVideo}`)
-        mediaVideo.setAttribute("aria-labeledby", "item-title")
+        mediaVideo.setAttribute("aria-describedby", `description${numVideo}`)
+        mediaVideo.setAttribute("aria-labeledby", `item${numMedia}-title`)
         mediaVideo.classList.add("item__media")
         mediaVideo.src = media.file;
-        mediaVideo.controls = true; // Ajoute les contrôles de lecture de la vidéo
+        // mediaVideo.controls = true; // Ajoute les contrôles de lecture de la vidéo
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaVideo);
         mediaLink.appendChild(spanDescription);
 
-        // mediaVideo.addEventListener('click',(event)=>launchLightbox(mediaVideo))
+        mediaVideo.addEventListener('click', (event) => event.preventDefault())
       }
 
       mediasList.appendChild(mediaItem);
       mediaItem.appendChild(itemBottom);
-
-
-      // function launchLightbox(media){
-
-      // }
 
     });
 

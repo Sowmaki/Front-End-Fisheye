@@ -10,6 +10,7 @@ function displayModal() {
     // modal.setAttribute("role", "dialog");
     /**Au vu de l'utilisation de la balise <dialog>, pas besoin d'ajouter un rôle ARIA dialog 
     ou d'autres attributs comme aria-hidden manuellement**/
+    main.classList.add('no-scroll')
     modal.setAttribute("tabindex", "-1");
     modal.style.display = "flex";
     modalCloseBtn.focus()
@@ -17,6 +18,7 @@ function displayModal() {
 
 function closeModal() {
     main.setAttribute("aria-hidden", "false");
+    main.classList.remove('no-scroll')
     // modal.setAttribute('aria-hidden', 'true');
     modal.style.display = "none";
 }

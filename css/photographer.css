@@ -3,6 +3,10 @@
   max-width: 1440px;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .hero__header {
   width: 100%;
 }
@@ -83,6 +87,7 @@
 }
 
 .modal {
+  border: none;
   border-radius: 5px;
   background-color: #DB8876;
   display: flex;
@@ -132,6 +137,32 @@
 .modal__form textarea {
   height: 100px;
 }
-.modal__form invalid-feedback {
+.modal__form .invalid-feedback {
   display: none;
+}
+
+/***** LIGHTBOX ****/
+.lightbox {
+  border: none;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.lightbox__closeBtn i {
+  color: #901C1C;
+  font-size: 42px;
+}
+.lightbox__media img, .lightbox__media video {
+  height: 900px;
+  width: 1050px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: 50% 35%;
+     object-position: 50% 35%;
 }/*# sourceMappingURL=photographer.css.map */

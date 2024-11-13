@@ -18,12 +18,12 @@ export function photographerTemplate(data) {
         const a = document.createElement('a');
         a.className = "photographer__link";
         a.setAttribute("href", `photographer.html?id=${ID}`)
-        // a.addEventListener('keydown', (event) => {
-        //     if (event.code === 'Space') {
-        //         event.preventDefault();
-        //         a.click(); //Simule un clic pour rediriger vers l'adresse href
-        //     }
-        // });
+        a.addEventListener('keydown', (event) => {
+            if (event.code === 'Space') {
+                event.preventDefault();
+                a.click(); //Simule un clic pour rediriger vers l'adresse href
+            }
+        });
 
         const img = document.createElement('img');
         img.className = "photographer__pic"

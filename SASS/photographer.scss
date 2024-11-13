@@ -1,6 +1,12 @@
+$button-color: #901C1C;
+
 #photographer-header {
   margin: 0 100px;
   max-width: 1440px;
+}
+
+.no-scroll {
+  overflow: hidden;
 }
 
 .hero {
@@ -79,7 +85,7 @@
   width: 170px;
   height: 70px;
   border: none;
-  background-color: #901C1C;
+  background-color: $button-color;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -93,6 +99,7 @@
 }
 
 .modal {
+  border: none;
   border-radius: 5px;
   background-color: #DB8876;
   display: flex;
@@ -101,6 +108,7 @@
   justify-content: space-between;
   padding: 35px;
   margin: auto;
+
 
   &__header {
     justify-content: space-between;
@@ -150,9 +158,38 @@
       height: 100px;
     }
 
-    & invalid-feedback {
+    .invalid-feedback {
       display: none;
     }
   }
 
+}
+
+
+/***** LIGHTBOX ****/
+
+.lightbox {
+  border: none;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &__closeBtn i {
+    color: $button-color;
+    font-size: 42px;
+  }
+
+  &__media img,
+  &__media video {
+    height: 900px;
+    width: 1050px;
+    object-fit: cover;
+    object-position: 50% 35%;
+  }
 }
