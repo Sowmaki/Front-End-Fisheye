@@ -92,31 +92,6 @@ export function photographerTemplate(data) {
         return header
     }
 
-    // function createUserEncartDOM() {
-    //     //***************************************************Encart 
-
-    //     const encart = document.createElement("aside");
-    //     encart.className = "likesNprice";
-
-    //     const likes = document.createElement("p");
-    //     likes.className = "likesNprice__likes";
-    //     likes.textContent = `${}`
-
-    //     const coeur = document.createElement("span");
-    //     coeur.className = "likesNprice__heart";
-    //     coeur.innerHTML = '<i class="fa-solid fa-heart"></i>';
-
-    //     const price = document.createElement("p");
-    //     price.className = "likesNprice__price";
-
-    //     likes.appendChild(coeur);
-    //     encart.appendChild(likes);
-    //     encart.appendChild(price);
-
-    //     return encart
-
-    // }
-
     return { createUserCardDOM, createUserProfileDOM }
 
 }

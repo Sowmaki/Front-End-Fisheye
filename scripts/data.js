@@ -16,23 +16,3 @@ export async function getPhotographers() {
   }
 
 }
-
-export async function getPhotographersMedias() {
-
-  try {
-    const response = await fetch('data/photographersMedia.json')
-    if (!response.ok) {
-      throw new Error('could not fetch data')
-    }
-
-    const mediasData = await response.json()
-    return mediasData
-
-  }
-  catch (error) {
-    console.error(error);
-  }
-
-}
-
-getPhotographersMedias()

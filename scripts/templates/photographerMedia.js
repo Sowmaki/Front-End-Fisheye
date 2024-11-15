@@ -1,10 +1,10 @@
-import { getPhotographersMedias } from "../data.js";
+import { getPhotographers } from "../data.js";
 import { displayLightbox } from "../utils/lightbox.js";
 import { sortMedias } from "../utils/sortMedias.js";
 
 
-function photographerMediasTemplate(mediasData) {
-  const { title, file, description, likes, type } = mediasData[0];
+function photographerMediasTemplate(data) {
+  const { photographerId, date, image, video, title, likes } = data;
 
 
   function getUserMediasDOM() {
@@ -24,7 +24,7 @@ function photographerMediasTemplate(mediasData) {
     let numMedia = 0;
     let numVideo = 0;
     // Pour chaque élément (photo) du tableau, on crée un élément li contenant les "articles" et on l'ajoute à la liste ul qui contient ceci
-    mediasData.forEach((media, index) => {
+    data.forEach((media, index) => {
       numMedia++
 
       const mediaItem = document.createElement("li");
@@ -68,16 +68,16 @@ function photographerMediasTemplate(mediasData) {
 
       itemBottom.appendChild(mediaTitle)
       itemBottom.appendChild(itemLikes)
+      console.log(media)
 
-      if (media.type === "image") {
-
+      if (media.image) {
         const mediaImg = document.createElement("img");
         mediaImg.classList.add("item__media")
-        mediaImg.src = media.file;
-        mediaImg.alt = media.description;
+        mediaImg.src = `assets/photographers_medias/${media.photographerId}/${media.image}`
+        mediaImg.setAttribute('aria-labelledby', `item${numMedia}-title`);
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaImg);
-      } else if (media.type === "video") {
+      } else if (media.video) {
 
         numVideo++  //incrémente numVideo
 
@@ -88,14 +88,12 @@ function photographerMediasTemplate(mediasData) {
         spanDescription.textContent = `${media.description}`
 
         const mediaVideo = document.createElement("video");
-        mediaVideo.setAttribute("aria-describedby", `description${numVideo}`)
         mediaVideo.setAttribute("aria-labeledby", `item${numMedia}-title`)
         mediaVideo.classList.add("item__media")
-        mediaVideo.src = media.file;
+        mediaVideo.src = `assets/photographers_medias/${media.photographerId}/${media.video}`;
         // mediaVideo.controls = true; // Ajoute les contrôles de lecture de la vidéo
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaVideo);
-        mediaLink.appendChild(spanDescription);
 
         mediaVideo.addEventListener('click', (event) => event.preventDefault())
       }
@@ -103,16 +101,17 @@ function photographerMediasTemplate(mediasData) {
       mediasList.appendChild(mediaItem);
       mediaItem.appendChild(itemBottom);
 
-      //***************************************************Encart 
-
-
 
       // const price = document.createElement("p");
       // encart.appendChild(price);
 
     });
 
+
+    //***************************************************Encart 
     divMedias.appendChild(mediasList);
+
+    sortMedias(data)
 
     const likesList = mediasList.querySelectorAll('.item__likes')
 
@@ -130,23 +129,20 @@ function photographerMediasTemplate(mediasData) {
     likesSpan.classList.add('encart__likes')
     likesSpan.textContent = `${likesSum}`
 
-    sortMedias()
+    const divLikes = document.querySelector('.encart__likes')
+    divLikes.textContent === "" && divLikes.prepend(likesSpan)
 
     return divMedias;
 
 
   };
 
-
-
-
-  return { title, file, description, likes, type, getUserMediasDOM };
+  return { getUserMediasDOM };
 
 }
 
-async function displaymediasData(medias) {
+export async function displaymediasData(medias) {
   const main = document.querySelector("main"); //recupere l'endroit ou vont etre affichés les medias
-  const likesDiv = document.querySelector('.encart__likesDiv')
 
   // supprime l'element medias du main s'il existe deja
   main.querySelector(".medias")?.remove()
@@ -163,15 +159,16 @@ async function displaymediasData(medias) {
 async function recupererMediasPhotographe(id) {
   const photographerID = parseInt(new URLSearchParams(location.search).get("id"))
 
-  const result = await getPhotographersMedias();
+  const result = await getPhotographers();
 
-  const photographersMedia = result
+  const photographerMedias = result.media
+
+  const selectedMedias = photographerMedias.filter(element => element.photographerId === photographerID)
+
 
   //On parcourt le tableau d'IDs pour y TROUVER le ID , identique a  notre variable id.
 
-  // const selectedMedias = photographersMedia[id]
-
-  const selectedMedias = photographersMedia[photographerID]
+  // const selectedMedias = photographersMedia[photographerID]
 
   // On stoppe la fonction si le bon photographe n'est pas retrouvé et on lance une alerte pour l'utilisateur.
   if (!selectedMedias) {
@@ -180,7 +177,9 @@ async function recupererMediasPhotographe(id) {
   }
   // Si le bon photographe est retrouvé, on lance la fonction qui permet d'afficher ses datas.
   displaymediasData(selectedMedias)
+
 }
+
 
 recupererMediasPhotographe()
 
