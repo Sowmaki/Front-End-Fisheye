@@ -1,14 +1,21 @@
-#photographer-header {
-  margin: 0 100px;
-  max-width: 1440px;
-}
-
 .no-scroll {
   overflow: hidden;
 }
 
+.header--photographer {
+  padding-top: 42px;
+  margin: 0 100px;
+  max-width: 1440px;
+}
+
 .hero__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
 }
 .hero__img {
   width: 200px;
@@ -26,6 +33,10 @@
   color: black;
 }
 
+.divTri {
+  justify-self: baseline;
+}
+
 /*** MEDIAS ***/
 .medias-list {
   width: -moz-fit-content;
@@ -33,9 +44,9 @@
   padding: 0;
   margin: 0;
   list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 95px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px 95px;
 }
 
 .item {
@@ -158,6 +169,15 @@
   color: #901C1C;
   font-size: 42px;
 }
+.lightbox__carousel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.lightbox__nav i {
+  font-size: 29px;
+  color: #901C1C;
+}
 .lightbox__media img, .lightbox__media video {
   height: 900px;
   width: 1050px;
@@ -169,6 +189,7 @@
 
 body {
   font-family: "DM Sans", sans-serif;
+  font-weight: 400;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -179,47 +200,99 @@ body {
 main {
   padding: 0 100px;
   max-width: 1440px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
-header {
+.header--index {
+  margin: 0 100px;
+  max-width: 1440px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 90px;
+  width: 100%;
+}
+
+a {
+  display: flex;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
 }
 
 h1 {
+  margin: 0;
   color: #901C1C;
-  margin-right: 100px;
+  font-size: 36px;
 }
 
 .logo {
   height: 50px;
-  margin-left: 100px;
 }
 
 .photographer__section {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px 317px;
   margin-top: 100px;
 }
-
 .photographer__section article {
+  width: 200px;
   justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-
-.photographer__section article h2 {
-  color: #D3573C;
-  font-size: 36px;
+.photographer__section article .photographer__TracyGalindo {
+  height: 240px;
+  width: 240px;
+  bottom: -20px;
+  left: 0;
 }
-
 .photographer__section article img {
+  position: absolute;
+  bottom: -110px;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
+  width: 526px;
+  height: 358px;
+}
+.photographer__link {
+  position: relative;
+  justify-content: center;
   height: 200px;
   width: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 4px solid rgba(255, 255, 255, 0.25);
+}
+.photographer__infos {
+  text-align: center;
+}
+.photographer__name {
+  margin: 20px 0 0 0;
+  text-overflow: visible;
+  text-wrap: nowrap;
+  color: #D3573C;
+}
+.photographer__location {
+  font-size: 13px;
+  color: #901C1C;
+}
+.photographer__tagline {
+  font-size: 10px;
+}
+.photographer__price {
+  font-size: 9px;
+  color: #757575;
 }/*# sourceMappingURL=style.css.map */

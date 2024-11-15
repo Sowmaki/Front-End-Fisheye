@@ -1,18 +1,26 @@
-$button-color: #901C1C;
-
-#photographer-header {
-  margin: 0 100px;
-  max-width: 1440px;
-}
+$main-color: #901C1C;
+$secondary-color: #D3573C;
 
 .no-scroll {
   overflow: hidden;
 }
 
+.header--photographer {
+  padding-top: 42px;
+  margin: 0 100px;
+  max-width: 1440px;
+}
+
 .hero {
 
+
   &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    height: fit-content;
   }
 
   &__img {
@@ -34,6 +42,10 @@ $button-color: #901C1C;
   }
 }
 
+.divTri {
+  justify-self: baseline;
+}
+
 /*** MEDIAS ***/
 
 .medias-list {
@@ -41,9 +53,11 @@ $button-color: #901C1C;
   padding: 0;
   margin: 0;
   list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 95px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // justify-content: center;
+  // flex-wrap: wrap;
+  gap: 20px 95px;
 }
 
 .item {
@@ -55,8 +69,6 @@ $button-color: #901C1C;
     height: 300px;
     object-fit: cover;
   }
-
-  &__link {}
 
   &__bottom {
     display: flex;
@@ -85,7 +97,7 @@ $button-color: #901C1C;
   width: 170px;
   height: 70px;
   border: none;
-  background-color: $button-color;
+  background-color: $main-color;
   border-radius: 5px;
   cursor: pointer;
 }
@@ -181,8 +193,19 @@ $button-color: #901C1C;
   height: 100%;
 
   &__closeBtn i {
-    color: $button-color;
+    color: $main-color;
     font-size: 42px;
+  }
+
+  &__carousel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &__nav i {
+    font-size: 29px;
+    color: $main-color;
   }
 
   &__media img,

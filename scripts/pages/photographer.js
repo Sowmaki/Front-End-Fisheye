@@ -38,7 +38,6 @@ const displayProfileData = (photographer) => {
 
   //On envoie ce profil dans la section photograph-header
   photographerMain.prepend(userProfileDOM);
-
 }
 
 recupererPhotographe()

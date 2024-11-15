@@ -14,6 +14,7 @@ export function photographerTemplate(data) {
     function createUserCardDOM() {
         const article = document.createElement('article');
         const div = document.createElement('div');
+        div.className = "photographer__infos"
 
         const a = document.createElement('a');
         a.className = "photographer__link";
@@ -26,17 +27,17 @@ export function photographerTemplate(data) {
         });
 
         const img = document.createElement('img');
-        img.className = "photographer__pic"
+        img.className = `photographer__pic photographer__${nom.replace(/\s+/g, '')}`
         img.setAttribute("src", photo)
         img.setAttribute("aria-label", `${nom}'s profile picture`)
         a.appendChild(img)
 
-        const h2 = document.createElement('h2');
+        const h2 = document.createElement('h1');
         h2.textContent = nom;
         h2.className = "photographer__name"
 
         const villeTxt = document.createElement('p')
-        villeTxt.className = "photographer__city"
+        villeTxt.className = "photographer__location"
         villeTxt.textContent = `${ville}, ${pays}`;
 
         const sloganTxt = document.createElement('p')
@@ -91,33 +92,32 @@ export function photographerTemplate(data) {
         return header
     }
 
-    function createUserEncart() {
-        //***************************************************Encart 
-        const encart = document.createElement("aside");
-        encart.className = "likesNprice";
+    // function createUserEncartDOM() {
+    //     //***************************************************Encart 
 
-        const likes = document.createElement("p");
-        likes.className = "likesNprice__likes";
-        likes.textContent = ``
+    //     const encart = document.createElement("aside");
+    //     encart.className = "likesNprice";
 
-        const coeur = document.createElement("span");
-        coeur.className = "likesNprice__heart";
-        coeur.innerHTML = '<i class="fa-solid fa-heart"></i>';
+    //     const likes = document.createElement("p");
+    //     likes.className = "likesNprice__likes";
+    //     likes.textContent = `${}`
 
-        const price = document.createElement("p");
-        price.className = "likesNprice__price";
+    //     const coeur = document.createElement("span");
+    //     coeur.className = "likesNprice__heart";
+    //     coeur.innerHTML = '<i class="fa-solid fa-heart"></i>';
 
-        likes.appendChild(coeur);
-        encart.appendChild(likes);
-        encart.appendChild(price);
+    //     const price = document.createElement("p");
+    //     price.className = "likesNprice__price";
 
-        return (encart)
+    //     likes.appendChild(coeur);
+    //     encart.appendChild(likes);
+    //     encart.appendChild(price);
 
-    }
+    //     return encart
 
+    // }
 
-
-    return { createUserCardDOM, createUserProfileDOM, createUserEncart }
+    return { createUserCardDOM, createUserProfileDOM }
 
 }
 

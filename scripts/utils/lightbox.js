@@ -9,16 +9,12 @@ export function displayLightbox(mediaIndex) {
   const media = mediaList[mediaIndex]; // Récupère le média cliqué
   const lightboxMedia = document.querySelector('.lightbox__media');
 
-  console.log(media.getAttribute('aria-labelledby'))
-
 
   // Affiche la lightbox
   lightbox.style.display = 'flex';
   main.style.display = 'none';
   main.setAttribute("aria-hidden", "true");
-  main.classList.add('no-scroll');
   lightbox.setAttribute("tabindex", "-1");
-  lightbox.style.display = "flex";
   lightboxCloseBtn.focus();
 
 
@@ -55,6 +51,38 @@ export function displayLightbox(mediaIndex) {
   const container = media.closest('.item');
   const mediaTitle = container.querySelector('.item__title');
   title.textContent = mediaTitle.textContent;
-  title.classList.add("ligthbox__title");
+  title.classList.add("lightbox__title");
+  let currentTitle = document.querySelector('.lightbox__title');
+  if (currentTitle) {
+    currentTitle.remove()
+  }
   lightbox.appendChild(title);
+
+  // Ajouter la navigation entre les médias
+  const prevButton = document.querySelector('.lightbox__previous');
+  const nextButton = document.querySelector('.lightbox__next');
+
+  prevButton.addEventListener('click', () => {
+    let prevIndex = mediaIndex === 0 ? mediaList.length - 1 : mediaIndex - 1;
+    displayLightbox(prevIndex);
+    prevButton.focus()
+  });
+
+  nextButton.addEventListener('click', () => {
+    let nextIndex = mediaIndex === mediaList.length - 1 ? 0 : mediaIndex + 1;
+    displayLightbox(nextIndex);
+    nextButton.focus()
+  });
+
+  //Fermer la modale
+  lightboxCloseBtn.addEventListener('click', (event => {
+    event.preventDefault()
+    lightbox.style.display = 'none';
+    main.style.display = 'flex';
+    main.setAttribute("aria-hidden", "false");
+    const mediaLink = container.querySelector('.item__link');
+    mediaLink.focus() // met le focus sur l'image sur laquelle était l'utilisateur dans la lightbox   
+  }))
+
+
 }

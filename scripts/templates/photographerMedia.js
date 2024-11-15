@@ -6,6 +6,7 @@ import { sortMedias } from "../utils/sortMedias.js";
 function photographerMediasTemplate(mediasData) {
   const { title, file, description, likes, type } = mediasData[0];
 
+
   function getUserMediasDOM() {
 
     const divMedias = document.createElement("section");
@@ -36,6 +37,12 @@ function photographerMediasTemplate(mediasData) {
         event.preventDefault();
         displayLightbox(index); // Passer l'index du média cliqué à la lightbox
       });
+      mediaLink.addEventListener('keydown', (event) => {
+        if (event.key === "Enter" || event.key === "Space" || event.key === " ") {
+          event.preventDefault()
+          mediaLink.click()
+        }
+      })
 
 
       const mediaTitle = document.createElement("h2");
@@ -46,11 +53,18 @@ function photographerMediasTemplate(mediasData) {
       const itemBottom = document.createElement("div");
       itemBottom.className = "item__bottom";
 
-      const itemLikes = document.createElement("p");
-      itemLikes.className = "item__plikes";
-      const likesNb = document.createElement("span");
-      likesNb.content = media.likes;
-      itemLikes.innerHTML = `${media.likes} '<i class="fa-solid fa-heart" aria-label="likes"></i>`
+      const itemLikes = document.createElement('div')
+      itemLikes.classList.add('item__likesDiv')
+      const itemIcon = document.createElement('i')
+      itemIcon.classList.add('fa-solid', 'fa-heart')
+      itemIcon.setAttribute('aria-label', 'Likes')
+      const likes = document.createElement('span')
+      likes.classList.add('item__likes')
+      likes.textContent = `${media.likes}`
+
+      itemLikes.appendChild(likes)
+      itemLikes.appendChild(itemIcon)
+
 
       itemBottom.appendChild(mediaTitle)
       itemBottom.appendChild(itemLikes)
@@ -89,14 +103,42 @@ function photographerMediasTemplate(mediasData) {
       mediasList.appendChild(mediaItem);
       mediaItem.appendChild(itemBottom);
 
+      //***************************************************Encart 
+
+
+
+      // const price = document.createElement("p");
+      // encart.appendChild(price);
+
     });
 
     divMedias.appendChild(mediasList);
 
+    const likesList = mediasList.querySelectorAll('.item__likes')
+
+    let likesSum = 0
+
+    likesList.forEach(element => {
+      const elementContent = element.innerText
+      const numberLikes = parseInt(elementContent)
+      likesSum += numberLikes
+
+    })
+    console.log(likesSum);
+
+    const likesSpan = document.createElement('span')
+    likesSpan.classList.add('encart__likes')
+    likesSpan.textContent = `${likesSum}`
+
     sortMedias()
 
     return divMedias;
+
+
   };
+
+
+
 
   return { title, file, description, likes, type, getUserMediasDOM };
 
@@ -104,13 +146,18 @@ function photographerMediasTemplate(mediasData) {
 
 async function displaymediasData(medias) {
   const main = document.querySelector("main"); //recupere l'endroit ou vont etre affichés les medias
+  const likesDiv = document.querySelector('.encart__likesDiv')
 
   // supprime l'element medias du main s'il existe deja
   main.querySelector(".medias")?.remove()
 
   const photographerMediasModel = photographerMediasTemplate(medias); //
+
+
   const userMediasDOM = photographerMediasModel.getUserMediasDOM();
+  // const userLikesDOM = photographerMediasModel.getUserLikes()
   main.appendChild(userMediasDOM);
+  // likesDiv.prepend(userLikesDOM)
 }
 
 async function recupererMediasPhotographe(id) {
@@ -136,3 +183,4 @@ async function recupererMediasPhotographe(id) {
 }
 
 recupererMediasPhotographe()
+
