@@ -34,8 +34,6 @@ export async function getPhotographerPrice(phtotgrapherId) {
     return
   }
 
-  console.log(selectedPhotograph.price);
-
   // Si le bon photographe est retrouvé, on lance la fonction qui permet d'afficher ses datas.
   return selectedPhotograph.price
 }

@@ -14,9 +14,8 @@
   <aside class="encart">
     <div class="encart__likesDiv">
       <span class="encart__likes"></span>
-      <i class="fa-solid fa-heart" aria-label="likes"></i>
+      <span class="fa-solid fa-heart" aria-label="likes"></span>
     </div>
-    <div class="encart__priceDiv"></div>
   </aside>
   <div class="body-container">
     <header class="header--photographer">
@@ -29,7 +28,7 @@
         <button class="btn contact__button">Contactez-moi</button>
       </header>
       <div class="divTri">
-        <label for="sort__options">Trier par :</label>
+        <label for="sort-options">Trier par :</label>
         <select id="sort-options" class="sort__selector" aria-label="Options de tri">
           <option value="" selected></option>
           <option id="popularity-option" value="popularity">Popularité</option>
@@ -48,22 +47,23 @@
       <form method="post" class="modal__form">
         <div role="group" aria-label="vos coordonnées">
           <label for="prenom" id="first_label">Prénom</label>
-          <input class="input" id="prenom" type="text" aria-label="first-name" required aria-required="true" />
+          <input class="input" id="prenom" name="prenom" type="text" aria-label="first-name" required
+            aria-required="true" />
           <div class="invalid-feedback">.
             Veuillez renseigner ce champ.
           </div>
           <label for="nom" id="last-label">Nom</label>
-          <input class="input" id="nom" type="text" aria-label="last-name" required aria-required="true" />
+          <input class="input" id="nom" name="nom" type="text" aria-label="last-name" required aria-required="true" />
           <div class="invalid-feedback">
             Veuillez renseigner ce champ.
           </div>
           <label for="email" id="email_label">Email</label>
-          <input class="input" id="email" type="email" aria-label="email" required aria-required="true" />
+          <input class="input" id="email" name="email" type="email" aria-label="email" required aria-required="true" />
           <div class="invalid-feedback">
             Veuillez renseigner une adresse email valide.
           </div>
           <label for="message" id="message_label">Votre message</label>
-          <textarea class="input" role="text" id="message" type="text" aria-label="Your message" required
+          <textarea class="input" role="text" id="message" name="message" type="text" aria-label="Your message" required
             aria-required="true"></textarea>
           <div class="invalid-feedback">
             Veuillez ecrire votre message.
@@ -75,13 +75,13 @@
     </dialog>
 
     <dialog id="lightbox" class="lightbox">
-      <a href="" class="lightbox__closeBtn"><i class="fa-solid fa-xmark"></i></a>
+      <a href="#" class="lightbox__closeBtn" aria-label="Close dialog"><span class="fa-solid fa-xmark"></span></a>
       <div class="lightbox__carousel">
-        <a href="#" class="lightbox__previous lightbox__nav" aria-label="Previous image"><i
-            class="fa-solid fa-chevron-left"></i></a>
+        <a href="#" class="lightbox__previous lightbox__nav" aria-label="Previous image"><span
+            class="fa-solid fa-chevron-left"></span></a>
         <div class="lightbox__media"></div>
-        <a href="#" class="lightbox__next lightbox__nav" aria-label="Next image"><i
-            class="fa-solid fa-chevron-right"></i></a>
+        <a href="#" class="lightbox__next lightbox__nav" aria-label="Next image"><span
+            class="fa-solid fa-chevron-right"></span></a>
       </div>
     </dialog>
 

@@ -55,7 +55,7 @@ function photographerMediasTemplate(data) {
       const iconLink = document.createElement('a')
       iconLink.classList.add('item__iconLink')
       iconLink.setAttribute('href', '#')
-      const itemIcon = document.createElement('i')
+      const itemIcon = document.createElement('span')
       itemIcon.classList.add('fa-solid', 'fa-heart')
       itemIcon.setAttribute('aria-label', 'Likes')
       incrementLikes()
@@ -82,7 +82,6 @@ function photographerMediasTemplate(data) {
 
       itemBottom.appendChild(mediaTitle)
       itemBottom.appendChild(itemLikes)
-      console.log(media)
 
       if (media.image) {
         const mediaImg = document.createElement("img");

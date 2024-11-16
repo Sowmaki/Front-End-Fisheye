@@ -89,6 +89,7 @@ export function displayLightbox(mediaIndex) {
     lightbox.style.display = 'none';
     main.style.display = 'grid';
     main.setAttribute("aria-hidden", "false");
+    const container = media.closest('.item');
     const mediaLink = container.querySelector('.item__link');
     mediaLink.focus(); // Met le focus sur l'image précédente
     document.removeEventListener('keydown', handleLightboxKeyNavigation); // Nettoyer l'écouteur
