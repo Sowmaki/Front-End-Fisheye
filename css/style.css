@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .no-scroll {
   overflow: hidden;
 }
@@ -9,6 +10,11 @@
 }
 
 .hero__header {
+  margin-top: 40px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 56px 50px;
+  background-color: #FAFAFA;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -18,11 +24,34 @@
   height: fit-content;
 }
 .hero__img {
+  display: flex;
+  justify-content: center;
   width: 200px;
   height: 200px;
   border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.hero__img img {
+  width: 526px;
+  height: 358px;
   -o-object-fit: cover;
      object-fit: cover;
+  position: absolute;
+  bottom: -85px;
+  transform: scale(0.65);
+}
+.hero__name {
+  font-size: 64px;
+  color: #D3573C;
+}
+.hero__city {
+  font-size: 24px;
+  color: #901C1C;
+  margin-bottom: 19px;
+}
+.hero__tagline {
+  font-size: 18px;
 }
 
 .encart {
@@ -49,17 +78,68 @@
 .divTri {
   justify-self: baseline;
 }
+.divTri label {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.sort__selector {
+  position: relative;
+  display: inline-block;
+  font-size: 18px;
+  border: none;
+  padding: 23px 20px;
+  background-color: #901C1C;
+  border-radius: 5px;
+  color: white;
+}
+.sort__selector select {
+  appearance: none;
+  /* Enlève l'apparence native du <select> */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: #a11a1a;
+  /* Couleur de fond rouge */
+  color: #fff;
+  /* Couleur du texte blanche */
+  border: none;
+  border-radius: 8px;
+  /* Coins arrondis */
+  padding: 10px 20px;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+}
+.sort__selector select::after {
+  content: "▾";
+  /* Chevron bas */
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  /* Empêche l'interaction avec le chevron */
+  color: #fff;
+  font-size: 14px;
+}
+.sort__selector select option:not(:last-child) {
+  border-bottom: 1px solid white;
+}
 
 /*** MEDIAS ***/
+.medias {
+  display: flex;
+  justify-content: center;
+}
+
 .medias-list {
-  width: -moz-fit-content;
-  width: fit-content;
+  width: 100%;
   padding: 0;
   margin: 0;
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px 95px;
+  gap: 20px 7.5%;
 }
 
 .item {
@@ -68,6 +148,7 @@
   height: 350px;
 }
 .item__media {
+  border-radius: 5px;
   width: 350px;
   height: 300px;
   -o-object-fit: cover;

@@ -82,12 +82,15 @@ export function photographerTemplate(data) {
         divInfos.appendChild(villeTxt);
         divInfos.appendChild(sloganTxt);
 
+        const imgContainer = document.createElement('div')
+        imgContainer.classList.add('hero__img')
         const img = document.createElement('img');
-        img.className = "hero__img"
         img.setAttribute("src", photo)
         img.setAttribute("aria-label", `${nom}'s profile picture`);
 
-        header.appendChild(img);
+        imgContainer.appendChild(img)
+
+        header.appendChild(imgContainer);
 
         return header
     }
