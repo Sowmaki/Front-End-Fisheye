@@ -24,6 +24,23 @@ async function recupererPhotographe() {
   displayProfileData(selectedPhotograph)
 }
 
+export async function getPhotographerPrice(phtotgrapherId) {
+  const photographerId = parseInt(new URLSearchParams(location.search).get("id"))
+  const { photographers } = await getPhotographers();
+  const selectedPhotograph = photographers.find(photograph => photograph.id === photographerId)
+
+  if (!selectedPhotograph) {
+    alert(`Aucun photographe ne correspond à l'id ${photographerId}`)
+    return
+  }
+
+  console.log(selectedPhotograph.price);
+
+  // Si le bon photographe est retrouvé, on lance la fonction qui permet d'afficher ses datas.
+  return selectedPhotograph.price
+}
+getPhotographerPrice()
+
 
 
 const displayProfileData = (photographer) => {
@@ -42,13 +59,4 @@ const displayProfileData = (photographer) => {
 
 recupererPhotographe()
 
-// parametrage des cliquables pour qu'ils soient activés avec la barre espace également:
-const clickables = document.querySelectorAll('a', 'button')
-
-clickables.forEach(link => link.addEventListener('keydown', (event) => {
-  if (event.key === "Enter" || event.key === "Space" || event.key === " ") {
-    event.preventDefault()
-    link.click()
-  }
-}))
 

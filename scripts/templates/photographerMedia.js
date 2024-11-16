@@ -1,4 +1,6 @@
 import { getPhotographers } from "../data.js";
+import { getPhotographerPrice } from "../pages/photographer.js";
+import { isClickable } from "../utils/clickables.js";
 import { displayLightbox } from "../utils/lightbox.js";
 import { sortMedias } from "../utils/sortMedias.js";
 
@@ -37,12 +39,7 @@ function photographerMediasTemplate(data) {
         event.preventDefault();
         displayLightbox(index); // Passer l'index du média cliqué à la lightbox
       });
-      mediaLink.addEventListener('keydown', (event) => {
-        if (event.key === "Enter" || event.key === "Space" || event.key === " ") {
-          event.preventDefault()
-          mediaLink.click()
-        }
-      })
+      isClickable(mediaLink)
 
 
       const mediaTitle = document.createElement("h2");
@@ -55,15 +52,32 @@ function photographerMediasTemplate(data) {
 
       const itemLikes = document.createElement('div')
       itemLikes.classList.add('item__likesDiv')
+      const iconLink = document.createElement('a')
+      iconLink.classList.add('item__iconLink')
+      iconLink.setAttribute('href', '#')
       const itemIcon = document.createElement('i')
       itemIcon.classList.add('fa-solid', 'fa-heart')
       itemIcon.setAttribute('aria-label', 'Likes')
+      incrementLikes()
+
       const likes = document.createElement('span')
       likes.classList.add('item__likes')
       likes.textContent = `${media.likes}`
 
+      iconLink.appendChild(itemIcon)
       itemLikes.appendChild(likes)
-      itemLikes.appendChild(itemIcon)
+      itemLikes.appendChild(iconLink)
+
+      function incrementLikes() {
+        iconLink.addEventListener('click', (event) => {
+          event.preventDefault()
+          media.likes++
+          likes.textContent = `${media.likes}`
+          likesSum++
+          likesSpan.textContent = `${likesSum}`
+        })
+        isClickable(iconLink)
+      }
 
 
       itemBottom.appendChild(mediaTitle)
@@ -107,14 +121,12 @@ function photographerMediasTemplate(data) {
 
     });
 
-
-    //***************************************************Encart 
     divMedias.appendChild(mediasList);
 
     sortMedias(data)
-
+    //***************************************************Encart 
+    // afficher le nombre total de likes dans l'encart
     const likesList = mediasList.querySelectorAll('.item__likes')
-
     let likesSum = 0
 
     likesList.forEach(element => {
@@ -123,7 +135,6 @@ function photographerMediasTemplate(data) {
       likesSum += numberLikes
 
     })
-    console.log(likesSum);
 
     const likesSpan = document.createElement('span')
     likesSpan.classList.add('encart__likes')
@@ -131,6 +142,23 @@ function photographerMediasTemplate(data) {
 
     const divLikes = document.querySelector('.encart__likes')
     divLikes.textContent === "" && divLikes.prepend(likesSpan)
+
+    //Afficher le prix du photographe dans l'encart
+
+    async function displayPhotographerPrice(id) {
+      const encart = document.querySelector('.encart')
+      const priceDiv = document.createElement('div')
+      priceDiv.classList.add('encart__priceDiv')
+      const price = await getPhotographerPrice(id);
+      if (price !== null) {
+        priceDiv.textContent = `${price}€ /jour`
+        encart.querySelector(".encart__priceDiv")?.remove()
+        encart.appendChild(priceDiv)
+      }
+    }
+
+    displayPhotographerPrice()
+
 
     return divMedias;
 
