@@ -85,231 +85,274 @@ $secondary-color: #D3573C;
   }
 }
 
+/*** DIVTRI ***/
 .divTri {
   justify-self: baseline;
-
-  & label {
-    font-size: 18px;
-    font-weight: 700;
-  }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+  position: relative;
+  font-size: 18px;
+  font-weight: 700;
+  height: 70px;
 }
 
 .sort {
-  &__selector {
-    position: relative;
-    display: inline-block;
-    font-size: 18px;
+
+  position: absolute;
+  left: 100px;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 170px;
+  list-style-type: none;
+  display: block;
+  font-size: 18px;
+  border: none;
+  background-color: $main-color;
+  border-radius: 5px;
+  transform-origin: top;
+  overflow: hidden;
+  max-height: 70px;
+  transition: max-height 0.3s ease;
+
+
+  .bar {
+    display: none;
+    background-color: white;
     border: none;
+    width: 150px;
+    height: 1px;
+    margin: 0 auto;
+
+  }
+
+  .li-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sort__option:nth-child(1) {}
+
+  .sort__option:nth-child(3),
+  .sort__option:nth-child(5) {
+    display: none;
+  }
+
+  &__option {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    color: #FAFAFA;
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
     padding: 23px 20px;
-    background-color: $main-color;
-    border-radius: 5px;
-    color: white;
+    cursor: pointer;
 
-    & select {
-      .selector {
-        position: relative;
-        margin: 0;
-        background: $primary;
-        list-style: none;
-        border-radius: 5px;
-        color: white;
-        height: 45px;
-        width: 170px;
-        font-size: 18px;
-        transition: all .3s ease-in-out;
-        cursor: pointer;
-        z-index: 2;
+    .fa-solid {
+      display: inline-block;
 
-        &.active {
-          box-shadow: $shadow-selector;
-          overflow: hidden;
+      ::before {
+        content: "\f078"
+      }
 
-          .selector__item:hover,
-          .selector__item:focus {
-            box-shadow: none;
-            background-color: $primary-lighten2;
-            color: black;
-          }
-        }
-
-
-
+      ::after {
+        content: "\f077"
       }
     }
   }
 
-  /*** MEDIAS ***/
-  .medias {
+  // elements seondaires de la liste crees 
+  //avec js avec un background transparent
+  // background rouge créé avec css avec une classe active
+  //qui s'ajoute quand on clique sur l'element
+  //Egalement flèche qui pivote à 180°
+
+}
+
+.active {
+  max-height: 210px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 99;
+}
+
+/*** MEDIAS ***/
+.medias {
+  display: flex;
+  justify-content: center;
+}
+
+.medias-list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  // justify-content: center;
+  // flex-wrap: wrap;
+  gap: 20px 7.5%;
+}
+
+.item {
+  width: fit-content;
+  height: 350px;
+
+  &__media {
+    border-radius: 5px;
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  &__bottom {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  .medias-list {
+  &__description {
+    display: none;
+  }
+}
+
+
+.photograph-header {
+  background-color: #FAFAFA;
+  height: 300px;
+  margin: 0 100px;
+}
+
+.btn {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: $main-color;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#contact_modal {
+  display: none;
+  position: absolute;
+  top: 70px;
+  z-index: 9999;
+  width: 46.5%;
+}
+
+.modal {
+  border: none;
+  border-radius: 5px;
+  background-color: #DB8876;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+
+
+  &__header {
+    justify-content: space-between;
     width: 100%;
-    padding: 0;
-    margin: 0;
-    list-style-type: none;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    // justify-content: center;
-    // flex-wrap: wrap;
-    gap: 20px 7.5%;
   }
 
-  .item {
-    width: fit-content;
-    height: 350px;
+  &__closeBtn img {
+    cursor: pointer;
+  }
 
-    &__media {
-      border-radius: 5px;
-      width: 350px;
-      height: 300px;
-      object-fit: cover;
+  &__title {
+    font-size: 64px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+
+    & label {
+      color: #312E2E;
+      font-size: 36px;
     }
 
-    &__bottom {
+    & div {
       display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      width: 100%;
+      align-items: self-start;
+      margin-bottom: 26px;
     }
 
-    &__description {
+    & .input {
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+    }
+
+    & input {
+      height: 68px;
+    }
+
+    & textarea {
+      height: 100px;
+    }
+
+    .invalid-feedback {
       display: none;
     }
   }
 
+}
 
-  .photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+
+/***** LIGHTBOX ****/
+
+.lightbox {
+  border: none;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  &__closeBtn span {
+    color: $main-color;
+    font-size: 42px;
   }
 
-  .btn {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: $main-color;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  #contact_modal {
-    display: none;
-    position: absolute;
-    top: 70px;
-    z-index: 9999;
-    width: 46.5%;
-  }
-
-  .modal {
-    border: none;
-    border-radius: 5px;
-    background-color: #DB8876;
+  &__carousel {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
-
-
-    &__header {
-      justify-content: space-between;
-      width: 100%;
-    }
-
-    &__closeBtn img {
-      cursor: pointer;
-    }
-
-    &__title {
-      font-size: 64px;
-      font-weight: normal;
-      text-align: center;
-    }
-
-    &__form {
-      display: flex;
-      width: 100%;
-      flex-direction: column;
-      align-items: flex-start;
-
-      & label {
-        color: #312E2E;
-        font-size: 36px;
-      }
-
-      & div {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        align-items: self-start;
-        margin-bottom: 26px;
-      }
-
-      & .input {
-        border: none;
-        border-radius: 5px;
-        width: 100%;
-      }
-
-      & input {
-        height: 68px;
-      }
-
-      & textarea {
-        height: 100px;
-      }
-
-      .invalid-feedback {
-        display: none;
-      }
-    }
-
   }
 
-
-  /***** LIGHTBOX ****/
-
-  .lightbox {
-    border: none;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    &__closeBtn span {
-      color: $main-color;
-      font-size: 42px;
-    }
-
-    &__carousel {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-
-    &__nav span {
-      font-size: 29px;
-      color: $main-color;
-    }
-
-    &__media img,
-    &__media video {
-      height: 900px;
-      width: 1050px;
-      object-fit: cover;
-      object-position: 50% 35%;
-    }
+  &__nav span {
+    font-size: 29px;
+    color: $main-color;
   }
+
+  &__media img,
+  &__media video {
+    height: 900px;
+    width: 1050px;
+    object-fit: cover;
+    object-position: 50% 35%;
+  }
+}

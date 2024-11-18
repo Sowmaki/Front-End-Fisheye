@@ -3,7 +3,7 @@ import { displaymediasData } from '../templates/photographerMedia.js';
 export function sortMedias(data) {
   const sortOptions = document.getElementById("sort-options");
 
-  sortOptions.addEventListener('change', (event) => {
+  sortOptions.addEventListener('click', (event) => {
     let sortedMedias;
 
     if (event.target.value === "popularity") {

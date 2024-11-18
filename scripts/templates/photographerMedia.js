@@ -2,7 +2,8 @@ import { getPhotographers } from "../data.js";
 import { getPhotographerPrice } from "../pages/photographer.js";
 import { isClickable } from "../utils/clickables.js";
 import { displayLightbox } from "../utils/lightbox.js";
-import { sortMedias } from "../utils/sortMedias.js";
+// import { sortMedias } from "../utils/sortMedias.js";
+import { sortMedias } from "../utils/selector.js";
 
 
 function photographerMediasTemplate(data) {
