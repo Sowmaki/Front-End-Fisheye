@@ -50,6 +50,7 @@ $secondary-color: #D3573C;
   &__name {
     font-size: 64px;
     color: $secondary-color;
+    font-weight: 400;
   }
 
   &__city {
@@ -76,6 +77,7 @@ $secondary-color: #D3573C;
   background-color: $secondary-color;
   font-size: 24px;
   font-weight: 500;
+  z-index: 99;
 
   & span {
     font-size: 24px;
@@ -154,17 +156,14 @@ $secondary-color: #D3573C;
 
     .fa-solid {
       display: inline-block;
-
-      &::before {
-        content: "\f078"
-      }
-
-      &::after {
-        content: "\f077"
-      }
     }
   }
 
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
 }
 
 .active {
@@ -219,7 +218,7 @@ $secondary-color: #D3573C;
   &__likesDiv {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: baseline;
     gap: 5px;
     color: $main-color;
   }
@@ -254,15 +253,18 @@ $secondary-color: #D3573C;
   cursor: pointer;
 }
 
+/********************************* MODALE ******************/
 #contact_modal {
   display: none;
   position: absolute;
   top: 70px;
   z-index: 9999;
-  width: 46.5%;
+  width: 670px;
+  box-shadow: -5px 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .modal {
+  box-sizing: border-box;
   border: none;
   border-radius: 5px;
   background-color: #DB8876;
@@ -273,21 +275,28 @@ $secondary-color: #D3573C;
   padding: 35px;
   margin: auto;
 
-
   &__header {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 19px;
   }
 
   &__closeBtn img {
     cursor: pointer;
+    width: 42px;
+    height: 42px;
   }
 
   &__title {
+    width: 70%;
+    color: black;
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
   }
+
+  &__cross {}
 
   &__form {
     display: flex;
@@ -312,6 +321,8 @@ $secondary-color: #D3573C;
       border: none;
       border-radius: 5px;
       width: 100%;
+      font-size: 22px;
+      padding-left: 10px;
     }
 
     & input {
@@ -319,7 +330,8 @@ $secondary-color: #D3573C;
     }
 
     & textarea {
-      height: 100px;
+      padding-top: 10px;
+      height: 170px;
     }
 
     .invalid-feedback {
@@ -337,16 +349,21 @@ $secondary-color: #D3573C;
   display: none;
   flex-direction: column;
   justify-content: center;
+  gap: 12px;
   align-items: center;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  text-align: left;
 
   &__closeBtn span {
     color: $main-color;
     font-size: 42px;
+    position: absolute;
+    top: 15px;
+    right: 0px;
   }
 
   &__carousel {
@@ -354,6 +371,7 @@ $secondary-color: #D3573C;
     flex-direction: row;
     align-items: center;
     gap: 35px;
+    position: relative;
   }
 
   &__nav span {
@@ -367,5 +385,11 @@ $secondary-color: #D3573C;
     width: 1050px;
     object-fit: cover;
     object-position: 50% 35%;
+  }
+
+  h2 {
+    width: 1050px;
+    text-align: left;
+    padding-left: 35px;
   }
 }
