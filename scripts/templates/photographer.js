@@ -19,6 +19,7 @@ export function photographerTemplate(data) {
         const a = document.createElement('a');
         a.className = "photographer__link";
         a.setAttribute("href", `photographer.html?id=${ID}`)
+        a.setAttribute('aria-label', `${nom}`)
         a.addEventListener('keydown', (event) => {
             if (event.code === 'Space') {
                 event.preventDefault();
@@ -30,11 +31,18 @@ export function photographerTemplate(data) {
         img.className = `photographer__pic photographer__${nom.replace(/\s+/g, '')}`
         img.setAttribute("src", photo)
         img.setAttribute("aria-label", `${nom}'s profile picture`)
-        a.appendChild(img)
 
-        const h2 = document.createElement('h1');
-        h2.textContent = nom;
-        h2.className = "photographer__name"
+        const divImg = document.createElement('div')
+        divImg.classList.add('photographer__divImg')
+
+        divImg.appendChild(img)
+
+        const h1 = document.createElement('h1');
+        h1.textContent = nom;
+        h1.className = "photographer__name"
+
+        a.appendChild(divImg)
+        a.appendChild(h1)
 
         const villeTxt = document.createElement('p')
         villeTxt.className = "photographer__location"
@@ -49,7 +57,6 @@ export function photographerTemplate(data) {
         prixTxt.textContent = prix;
 
         article.appendChild(a);
-        article.appendChild(h2);
         article.appendChild(div);
         div.appendChild(villeTxt);
         div.appendChild(sloganTxt);

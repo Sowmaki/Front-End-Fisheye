@@ -9,12 +9,12 @@ export const options = {
     value: 'date',
     text: 'Date',
     id: 'option-date',
-    sort: (a, b) => a.title.localeCompare(b.title),
+    sort: (a, b) => new Date(b.date) - new Date(a.date),
   },
   title: {
     value: 'title',
     text: 'Titre',
     id: 'option-titre',
-    sort: (a, b) => new Date(b.date) - new Date(a.date),
+    sort: (a, b) => a.title.localeCompare(b.title),
   }
 };

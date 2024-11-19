@@ -15,26 +15,28 @@ export function displayList() {
   allOptions[1].style.display = 'flex';
   allOptions[2].style.display = 'flex';
   bars.forEach(bar => bar.style.display = 'block');
-
+  arrowIcon.setAttribute('aria-expanded', 'true')
   arrowIcon.classList.add('rotate')
 }
 
 export function closeList() {
-  console.log('CLOSE LIST')
   optionsList.classList.remove('active');
   allOptions[1].style.display = 'none';
   allOptions[2].style.display = 'none';
   bars.forEach(bar => bar.style.display = 'none');
+  arrowIcon.setAttribute('aria-expanded', 'false');
   arrowIcon.classList.remove('rotate')
 }
 
-optionsList.addEventListener('click', () => {
-  if (optionsList.classList.contains('active'))
+arrowIcon.addEventListener('click', (event) => {
+  event.stopPropagation()
+  if (optionsList.classList.contains('active')) {
     closeList()
-  else
+  } else {
     displayList()
+  }
 })
-isClickable(optionsList);
+isClickable(arrowIcon);
 
 export function sortMedias(data) {
   // Fonction de gestion partagée pour le clic et le clavier
@@ -48,7 +50,10 @@ export function sortMedias(data) {
 
     event.stopPropagation();
 
-
+    //Donne l'information de l'option selectionnée a la liste
+    selectedOption.setAttribute('aria-selected', 'true')
+    const selectedOptionId = selectedOption.id
+    optionsList.setAttribute('aria-activedescendant', `${selectedOptionId}`)
 
     // Échange des textes entre l'option sélectionnée et l'option cliquée
     const tempContent = selectedOptionTxt.innerText;
@@ -64,11 +69,10 @@ export function sortMedias(data) {
     const valueInfo = options[clickedOptionValue];
     data.sort(valueInfo.sort);
 
-
-
     closeList(); // Fermer la liste après l'échange de contenu
+    selectedOption.setAttribute('aria-selected', 'false')
     displaymediasData(data); // Mettre à jour l'affichage
-    optionsList.focus(); // Re-focus sur la liste
+    arrowIcon.focus(); // Re-focus sur la liste
   };
 
   // Gérer le clic sur une option
@@ -96,6 +100,7 @@ export function sortMedias(data) {
       option.setAttribute('aria-selected', 'false'); // Retirer l'indicateur de sélection lorsque l'option perd le focus
     });
   });
+
 
 }
 

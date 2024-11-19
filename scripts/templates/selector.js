@@ -5,9 +5,10 @@ export function selectorTemplates() {
   const divTri = document.querySelector('.divTri');
   const list = document.createElement('ul');
   list.classList.add('sort');
+  list.setAttribute('role', 'listbox');
+  list.setAttribute('aria-labelledby', 'sort-by');
   list.id = "sort-options";
   list.setAttribute('aria-label', 'Options de tri');
-  list.tabIndex = 0;
 
   // Boucle pour créer chaque élément de la liste
   Object.keys(options).forEach((optionKey, index) => {
@@ -17,6 +18,8 @@ export function selectorTemplates() {
     optionElement.classList.add('sort__option');
     optionElement.id = optionData.id; // Attribue une valeur personnalisée
     optionElement.dataset.value = optionData.value;
+    optionElement.setAttribute('role', 'option');
+    optionElement.setAttribute("aria-selected", "false");
 
     // Contenu principal de l'élément
     const optionContent = document.createElement('div');
@@ -30,7 +33,11 @@ export function selectorTemplates() {
     // Icône pour le premier élément uniquement
     if (index === 0) {
       const likeIcon = document.createElement('span');
+      likeIcon.tabIndex = 0;
       likeIcon.classList.add('fa-solid', 'fa-chevron-down');
+      likeIcon.setAttribute('role', 'button')
+      likeIcon.setAttribute('aria-haspopup', 'listbox')
+      likeIcon.setAttribute('aria-expanded', 'false');//indique par defaut que la liste est fermée
       optionContent.appendChild(likeIcon);
     }
 

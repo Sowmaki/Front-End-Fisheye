@@ -10,7 +10,9 @@ export function displayLightbox(mediaIndex) {
   const mediaList = document.querySelectorAll('.item__media');
   const lightboxMedia = document.querySelector('.lightbox__media');
   const prevButton = document.querySelector('.lightbox__previous');
+  prevButton.setAttribute('aria-label', 'Previous image')
   const nextButton = document.querySelector('.lightbox__next');
+  nextButton.setAttribute('aria-label', 'Next image')
 
   // Met à jour l'index actuel
   currentMediaIndex = mediaIndex;
@@ -27,7 +29,9 @@ export function displayLightbox(mediaIndex) {
   if (media.tagName === 'IMG') {
     const img = document.createElement('img');
     img.src = media.src;
-    img.alt = media.alt;
+    const descriptionElement = document.getElementById(media.getAttribute('aria-labelledby'))
+    img.alt = descriptionElement.textContent;
+    img.setAttribute('aria-label', 'Image Close up View')
     img.classList.add('lightbox-img');
     lightboxMedia.innerHTML = ''; // Vide le contenu précédent
     lightboxMedia.appendChild(img);
