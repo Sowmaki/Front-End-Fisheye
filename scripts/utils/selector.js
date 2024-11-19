@@ -8,8 +8,7 @@ selectorTemplates()
 const optionsList = document.getElementById('sort-options');
 const allOptions = document.querySelectorAll('.sort__option')
 const bars = optionsList.querySelectorAll('.bar');
-
-
+const arrowIcon = document.querySelector('.fa-chevron-down')
 
 export function displayList() {
   optionsList.classList.add('active');
@@ -17,6 +16,7 @@ export function displayList() {
   allOptions[2].style.display = 'flex';
   bars.forEach(bar => bar.style.display = 'block');
 
+  arrowIcon.classList.add('rotate')
 }
 
 export function closeList() {
@@ -25,6 +25,7 @@ export function closeList() {
   allOptions[1].style.display = 'none';
   allOptions[2].style.display = 'none';
   bars.forEach(bar => bar.style.display = 'none');
+  arrowIcon.classList.remove('rotate')
 }
 
 optionsList.addEventListener('click', () => {
@@ -42,11 +43,12 @@ export function sortMedias(data) {
     const clickedOptionTxt = clickedOption.querySelector('.li-txt');
     const selectedOption = allOptions[0];
     const selectedOptionTxt = selectedOption.querySelector('.li-txt');
-
     // Si la liste n'est pas active, on ne fait rien
     if (!optionsList.classList.contains('active')) return;
 
     event.stopPropagation();
+
+
 
     // Échange des textes entre l'option sélectionnée et l'option cliquée
     const tempContent = selectedOptionTxt.innerText;
@@ -61,6 +63,8 @@ export function sortMedias(data) {
     // Trier les données selon l'option cliquée
     const valueInfo = options[clickedOptionValue];
     data.sort(valueInfo.sort);
+
+
 
     closeList(); // Fermer la liste après l'échange de contenu
     displaymediasData(data); // Mettre à jour l'affichage

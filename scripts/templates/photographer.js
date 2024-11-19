@@ -60,6 +60,10 @@ export function photographerTemplate(data) {
     }
 
     function createUserProfileDOM() {
+        /************************ Nom dans la Modale de contact */
+
+        const modalTitle = document.querySelector('.modal__title')
+        modalTitle.textContent = `Contactez-moi ${nom}`
 
         //********************************************** */ Div header
         const header = document.querySelector(".hero__header");

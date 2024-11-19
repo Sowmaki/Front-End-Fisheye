@@ -1,3 +1,5 @@
+import { isClickable } from "./clickables.js";
+
 const main = document.querySelector("main");
 const modal = document.getElementById("contact_modal");
 const modalCloseBtn = document.querySelector(".modal__closeBtn")
@@ -6,6 +8,7 @@ const modalForm = document.querySelector(".modal__form");
 
 function displayModal() {
     main.setAttribute("aria-hidden", "true");
+    main.style.opacity = '30%'
     // modal.setAttribute('aria-hidden', 'false');
     // modal.setAttribute("role", "dialog");
     /**Au vu de l'utilisation de la balise <dialog>, pas besoin d'ajouter un rôle ARIA dialog 
@@ -14,10 +17,12 @@ function displayModal() {
     modal.setAttribute("tabindex", "-1");
     modal.style.display = "flex";
     modalCloseBtn.focus()
+
 }
 
 function closeModal() {
     main.setAttribute("aria-hidden", "false");
+    main.style.opacity = '100%'
     main.classList.remove('no-scroll')
     // modal.setAttribute('aria-hidden', 'true');
     modal.style.display = "none";
@@ -28,6 +33,7 @@ modalOpenBtn.addEventListener('click', (event) => {
     event.preventDefault()
     displayModal()
 });
+isClickable(modalOpenBtn)
 
 // Fermer la modale
 document.addEventListener("keydown", (event) => {
@@ -68,4 +74,6 @@ modalForm.addEventListener('submit', (event) => {
     closeModal()
 });
 
+
+isClickable(modalCloseBtn)
 

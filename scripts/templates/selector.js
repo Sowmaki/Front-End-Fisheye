@@ -8,8 +8,6 @@ export function selectorTemplates() {
   list.id = "sort-options";
   list.setAttribute('aria-label', 'Options de tri');
   list.tabIndex = 0;
-  const bar = document.createElement('hr')
-  bar.classList.add('bar')
 
   // Boucle pour créer chaque élément de la liste
   Object.keys(options).forEach((optionKey, index) => {
@@ -39,11 +37,20 @@ export function selectorTemplates() {
     // Ajout des éléments au DOM
     optionContent.prepend(optionText);
     optionElement.appendChild(optionContent);
-    if (index <= 1) {
-      optionElement.insertAdjacentElement('afterend', bar)
+
+    // Créer une nouvelle barre uniquement si nécessaire
+    if (index === 0 || index === 1) {
+      const bar = document.createElement('hr'); // Nouvelle instance pour chaque barre
+      bar.classList.add('bar'); // Ajoutez une classe si nécessaire
+
+      list.appendChild(optionElement); // Ajoutez d'abord l'élément dans la liste
+      optionElement.insertAdjacentElement('afterend', bar); // Puis insérez la barre après
+    } else {
+      list.appendChild(optionElement); // Sinon, ajoutez simplement l'élément
     }
-    list.appendChild(optionElement);
   });
+
+
 
   divTri.appendChild(list);
 }
