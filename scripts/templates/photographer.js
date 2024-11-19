@@ -70,7 +70,7 @@ export function photographerTemplate(data) {
         h1.textContent = nom;
         h1.className = "hero__name"
 
-        const villeTxt = document.createElement('p')
+        const villeTxt = document.createElement('h2')
         villeTxt.className = "hero__city"
         villeTxt.textContent = `${ville}, ${pays}`;
 

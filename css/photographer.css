@@ -45,8 +45,6 @@
   color: #D3573C;
 }
 .hero__city {
-  font-size: 24px;
-  color: #901C1C;
   margin-bottom: 19px;
 }
 .hero__tagline {
@@ -139,10 +137,10 @@
 .sort__option .fa-solid {
   display: inline-block;
 }
-.sort__option .fa-solid ::before {
+.sort__option .fa-solid::before {
   content: "\f078";
 }
-.sort__option .fa-solid ::after {
+.sort__option .fa-solid::after {
   content: "\f077";
 }
 
@@ -181,13 +179,30 @@
      object-fit: cover;
 }
 .item__bottom {
+  max-width: 350px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  margin: 10px 0 10px 0;
 }
-.item__description {
-  display: none;
+.item__title {
+  text-wrap: wrap;
+  max-width: 70%;
+}
+.item__likesDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+  color: #901C1C;
+}
+.item__likes {
+  font-size: 24px;
+}
+.item__iconLink span {
+  color: #901C1C;
+  font-size: 24px;
 }
 
 .photograph-header {
@@ -293,6 +308,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 35px;
 }
 .lightbox__nav span {
   font-size: 29px;

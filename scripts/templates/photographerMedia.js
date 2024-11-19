@@ -2,13 +2,10 @@ import { getPhotographers } from "../data.js";
 import { getPhotographerPrice } from "../pages/photographer.js";
 import { isClickable } from "../utils/clickables.js";
 import { displayLightbox } from "../utils/lightbox.js";
-// import { sortMedias } from "../utils/sortMedias.js";
 import { sortMedias } from "../utils/selector.js";
 
 
 function photographerMediasTemplate(data) {
-  const { photographerId, date, image, video, title, likes } = data;
-
 
   function getUserMediasDOM() {
 
@@ -159,9 +156,7 @@ function photographerMediasTemplate(data) {
 
     displayPhotographerPrice()
 
-
     return divMedias;
-
 
   };
 
@@ -171,12 +166,10 @@ function photographerMediasTemplate(data) {
 
 export async function displaymediasData(medias) {
   const main = document.querySelector("main"); //recupere l'endroit ou vont etre affichés les medias
-
   // supprime l'element medias du main s'il existe deja
   main.querySelector(".medias")?.remove()
 
   const photographerMediasModel = photographerMediasTemplate(medias); //
-
 
   const userMediasDOM = photographerMediasModel.getUserMediasDOM();
   // const userLikesDOM = photographerMediasModel.getUserLikes()
@@ -193,21 +186,12 @@ async function recupererMediasPhotographe(id) {
 
   const selectedMedias = photographerMedias.filter(element => element.photographerId === photographerID)
 
-
-  //On parcourt le tableau d'IDs pour y TROUVER le ID , identique a  notre variable id.
-
-  // const selectedMedias = photographersMedia[photographerID]
-
-  // On stoppe la fonction si le bon photographe n'est pas retrouvé et on lance une alerte pour l'utilisateur.
   if (!selectedMedias) {
     alert(`Aucun media ne correspond à l'id ${id}`)
     return
   }
-  // Si le bon photographe est retrouvé, on lance la fonction qui permet d'afficher ses datas.
   displaymediasData(selectedMedias)
-
 }
-
 
 recupererMediasPhotographe()
 

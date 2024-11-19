@@ -53,8 +53,6 @@ $secondary-color: #D3573C;
   }
 
   &__city {
-    font-size: 24px;
-    color: $main-color;
     margin-bottom: 19px;
   }
 
@@ -157,21 +155,15 @@ $secondary-color: #D3573C;
     .fa-solid {
       display: inline-block;
 
-      ::before {
+      &::before {
         content: "\f078"
       }
 
-      ::after {
+      &::after {
         content: "\f077"
       }
     }
   }
-
-  // elements seondaires de la liste crees 
-  //avec js avec un background transparent
-  // background rouge créé avec css avec une classe active
-  //qui s'ajoute quand on clique sur l'element
-  //Egalement flèche qui pivote à 180°
 
 }
 
@@ -211,14 +203,34 @@ $secondary-color: #D3573C;
   }
 
   &__bottom {
+    max-width: 350px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin: 10px 0 10px 0;
   }
 
-  &__description {
-    display: none;
+  &__title {
+    text-wrap: wrap;
+    max-width: 70%
+  }
+
+  &__likesDiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    color: $main-color;
+  }
+
+  &__likes {
+    font-size: 24px;
+  }
+
+  &__iconLink span {
+    color: $main-color;
+    font-size: 24px;
   }
 }
 
@@ -341,6 +353,7 @@ $secondary-color: #D3573C;
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 35px;
   }
 
   &__nav span {
