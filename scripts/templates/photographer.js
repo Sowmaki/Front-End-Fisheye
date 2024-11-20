@@ -98,6 +98,7 @@ export function photographerTemplate(data) {
         const img = document.createElement('img');
         img.setAttribute("src", photo)
         img.setAttribute("aria-label", `${nom}'s profile picture`);
+        img.className = `photographer__pic photographer__${nom.replace(/\s+/g, '')}`
 
         imgContainer.appendChild(img)
         header.appendChild(imgContainer);

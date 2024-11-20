@@ -40,6 +40,11 @@
   bottom: -85px;
   transform: scale(0.65);
 }
+.hero__img .photographer__TracyGalindo {
+  height: 350px;
+  width: 350px;
+  left: -65px;
+}
 .hero__name {
   font-size: 64px;
   color: #D3573C;
@@ -181,6 +186,8 @@
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: 50% 40%;
+     object-position: 50% 40%;
 }
 .item__bottom {
   max-width: 350px;
@@ -355,8 +362,10 @@
   -o-object-position: 50% 35%;
      object-position: 50% 35%;
 }
-.lightbox h1 {
+.lightbox h2 {
+  font-size: 24px;
+  color: #901C1C;
+  font-weight: 400;
   width: 1050px;
   text-align: left;
-  padding-left: 35px;
 }/*# sourceMappingURL=photographer.css.map */

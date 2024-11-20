@@ -45,6 +45,12 @@ $secondary-color: #D3573C;
       bottom: -85px;
       transform: scale(0.65);
     }
+
+    .photographer__TracyGalindo {
+      height: 350px;
+      width: 350px;
+      left: -65px;
+    }
   }
 
   &__name {
@@ -203,6 +209,7 @@ $secondary-color: #D3573C;
     width: 350px;
     height: 300px;
     object-fit: cover;
+    object-position: 50% 40%;
   }
 
   &__bottom {
@@ -403,9 +410,11 @@ $secondary-color: #D3573C;
     object-position: 50% 35%;
   }
 
-  h1 {
+  h2 {
+    font-size: 24px;
+    color: $main-color;
+    font-weight: 400;
     width: 1050px;
     text-align: left;
-    padding-left: 35px;
   }
 }

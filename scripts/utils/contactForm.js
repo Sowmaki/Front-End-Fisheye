@@ -25,6 +25,7 @@ function closeModal() {
     main.classList.remove('no-scroll')
     // modal.setAttribute('aria-hidden', 'true');
     modal.style.display = "none";
+    modalOpenBtn.focus()
 }
 
 // Ouvre la modale au clic sur le bouton "Contactez-moi"
