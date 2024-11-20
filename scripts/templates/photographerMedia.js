@@ -40,7 +40,7 @@ function photographerMediasTemplate(data) {
       isClickable(mediaLink)
 
 
-      const mediaTitle = document.createElement("h2");
+      const mediaTitle = document.createElement("p");
       mediaTitle.textContent = media.title;
       mediaTitle.id = `item${numMedia}-title`;
       mediaTitle.classList.add("item__title")
@@ -50,31 +50,28 @@ function photographerMediasTemplate(data) {
 
       const itemLikes = document.createElement('div')
       itemLikes.classList.add('item__likesDiv')
-      const iconLink = document.createElement('a')
-      iconLink.classList.add('item__iconLink')
-      iconLink.setAttribute('href', '#')
       const itemIcon = document.createElement('span')
       itemIcon.classList.add('fa-solid', 'fa-heart')
-      itemIcon.setAttribute('aria-label', 'Likes')
+      itemIcon.setAttribute('aria-label', 'Aimer ce contenu. Cliquez pour augmenter le nombre de likes.')
+      itemIcon.tabIndex = 0
       incrementLikes()
 
       const likes = document.createElement('span')
       likes.classList.add('item__likes')
       likes.textContent = `${media.likes}`
 
-      iconLink.appendChild(itemIcon)
       itemLikes.appendChild(likes)
-      itemLikes.appendChild(iconLink)
+      itemLikes.appendChild(itemIcon)
 
       function incrementLikes() {
-        iconLink.addEventListener('click', (event) => {
+        itemIcon.addEventListener('click', (event) => {
           event.preventDefault()
           media.likes++
           likes.textContent = `${media.likes}`
           likesSum++
           likesSpan.textContent = `${likesSum}`
         })
-        isClickable(iconLink)
+        isClickable(itemIcon)
       }
 
 

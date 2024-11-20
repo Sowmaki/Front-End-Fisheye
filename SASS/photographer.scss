@@ -55,6 +55,9 @@ $secondary-color: #D3573C;
 
   &__city {
     margin-bottom: 19px;
+    font-size: 24px;
+    color: $main-color;
+    font-weight: 400;
   }
 
   &__tagline {
@@ -212,7 +215,10 @@ $secondary-color: #D3573C;
 
   &__title {
     text-wrap: wrap;
-    max-width: 70%
+    max-width: 70%;
+    font-size: 24px;
+    color: $main-color;
+    font-weight: 400;
   }
 
   &__likesDiv {
@@ -227,9 +233,10 @@ $secondary-color: #D3573C;
     font-size: 24px;
   }
 
-  &__iconLink span {
+  .fa-heart {
     color: $main-color;
     font-size: 24px;
+    cursor: pointer;
   }
 }
 
@@ -296,8 +303,6 @@ $secondary-color: #D3573C;
     font-weight: normal;
   }
 
-  &__cross {}
-
   &__form {
     display: flex;
     width: 100%;
@@ -358,12 +363,15 @@ $secondary-color: #D3573C;
   height: 100%;
   text-align: left;
 
-  &__closeBtn span {
-    color: $main-color;
-    font-size: 42px;
+  &__closeBtn {
     position: absolute;
     top: 15px;
     right: 0px;
+
+    span {
+      color: $main-color;
+      font-size: 42px;
+    }
   }
 
   &__carousel {

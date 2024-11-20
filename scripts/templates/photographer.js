@@ -37,12 +37,12 @@ export function photographerTemplate(data) {
 
         divImg.appendChild(img)
 
-        const h1 = document.createElement('h1');
-        h1.textContent = nom;
-        h1.className = "photographer__name"
+        const h2 = document.createElement('h2');
+        h2.textContent = nom;
+        h2.className = "photographer__name"
 
         a.appendChild(divImg)
-        a.appendChild(h1)
+        a.appendChild(h2)
 
         const villeTxt = document.createElement('p')
         villeTxt.className = "photographer__location"

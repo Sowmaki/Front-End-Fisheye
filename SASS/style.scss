@@ -50,9 +50,6 @@ h1 {
 
 h2 {
   margin: 0;
-  font-size: 24px;
-  color: $main-color;
-  font-weight: 400;
 }
 
 .logo {
@@ -98,7 +95,9 @@ h2 {
     justify-content: center;
     align-items: center;
 
-    h1 {
+    h2 {
+      font-size: 36px;
+      font-weight: 400;
       margin: 20px 0 0 0;
       text-overflow: visible;
       text-wrap: nowrap;

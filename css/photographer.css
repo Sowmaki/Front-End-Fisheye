@@ -47,6 +47,9 @@
 }
 .hero__city {
   margin-bottom: 19px;
+  font-size: 24px;
+  color: #901C1C;
+  font-weight: 400;
 }
 .hero__tagline {
   font-size: 18px;
@@ -190,6 +193,9 @@
 .item__title {
   text-wrap: wrap;
   max-width: 70%;
+  font-size: 24px;
+  color: #901C1C;
+  font-weight: 400;
 }
 .item__likesDiv {
   display: flex;
@@ -201,9 +207,10 @@
 .item__likes {
   font-size: 24px;
 }
-.item__iconLink span {
+.item .fa-heart {
   color: #901C1C;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .photograph-header {
@@ -315,12 +322,14 @@
   height: 100%;
   text-align: left;
 }
-.lightbox__closeBtn span {
-  color: #901C1C;
-  font-size: 42px;
+.lightbox__closeBtn {
   position: absolute;
   top: 15px;
   right: 0px;
+}
+.lightbox__closeBtn span {
+  color: #901C1C;
+  font-size: 42px;
 }
 .lightbox__carousel {
   display: flex;
