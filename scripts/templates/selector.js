@@ -1,7 +1,7 @@
 import { options } from "../../data/options.js";
 
+// Crée les éléments du DOM nécessaires au sélecteur de tri
 export function selectorTemplates() {
-
   const divTri = document.querySelector('.divTri');
   const list = document.createElement('ul');
   list.classList.add('sort');
@@ -10,13 +10,13 @@ export function selectorTemplates() {
   list.id = "sort-options";
   list.setAttribute('aria-label', 'Options de tri');
 
-  // Boucle pour créer chaque élément de la liste
+  // Boucle pour créer chaque élément de la liste à partir de l'objet "options"
   Object.keys(options).forEach((optionKey, index) => {
     const optionData = options[optionKey]; // Récupère l'objet correspondant à la clé
     const optionElement = document.createElement('li');
-    optionElement.tabIndex = 0; // Permettre la navigation clavier
+    optionElement.tabIndex = 0;
     optionElement.classList.add('sort__option');
-    optionElement.id = optionData.id; // Attribue une valeur personnalisée
+    optionElement.id = optionData.id;
     optionElement.dataset.value = optionData.value;
     optionElement.setAttribute('role', 'option');
     optionElement.setAttribute("aria-selected", "false");
@@ -30,7 +30,7 @@ export function selectorTemplates() {
     optionText.classList.add('li-txt');
     optionText.innerText = optionData.text;
 
-    // Icône pour le premier élément uniquement
+    // Icône de la flèche pour le premier élément uniquement
     if (index === 0) {
       const likeIcon = document.createElement('span');
       likeIcon.tabIndex = 0;
@@ -41,14 +41,13 @@ export function selectorTemplates() {
       optionContent.appendChild(likeIcon);
     }
 
-    // Ajout des éléments au DOM
     optionContent.prepend(optionText);
     optionElement.appendChild(optionContent);
 
-    // Créer une nouvelle barre uniquement si nécessaire
+    // Crée une nouvelle barre uniquement si nécessaire
     if (index === 0 || index === 1) {
-      const bar = document.createElement('hr'); // Nouvelle instance pour chaque barre
-      bar.classList.add('bar'); // Ajoutez une classe si nécessaire
+      const bar = document.createElement('hr');
+      bar.classList.add('bar');
 
       list.appendChild(optionElement); // Ajoutez d'abord l'élément dans la liste
       optionElement.insertAdjacentElement('afterend', bar); // Puis insérez la barre après

@@ -1,4 +1,4 @@
-
+import { isClickable } from "../utils/clickables.js";
 
 export function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
@@ -11,6 +11,7 @@ export function photographerTemplate(data) {
     const prix = `${price}€/jour`;
     const ID = `${id}`;
 
+    // Crée les éléments du DOM pour la card du photographe
     function createUserCardDOM() {
         const article = document.createElement('article');
         const div = document.createElement('div');
@@ -20,12 +21,7 @@ export function photographerTemplate(data) {
         a.className = "photographer__link";
         a.setAttribute("href", `photographer.html?id=${ID}`)
         a.setAttribute('aria-label', `${nom}`)
-        a.addEventListener('keydown', (event) => {
-            if (event.code === 'Space') {
-                event.preventDefault();
-                a.click(); //Simule un clic pour rediriger vers l'adresse href
-            }
-        });
+        isClickable(a)// rend l'élément cliquable avec les touches "espace" ou "entree"
 
         const img = document.createElement('img');
         img.className = `photographer__pic photographer__${nom.replace(/\s+/g, '')}`
@@ -66,15 +62,19 @@ export function photographerTemplate(data) {
 
     }
 
+    // Crée les éléments du DOM nécessaire au profil de la page du photographe
     function createUserProfileDOM() {
-        /************************ Nom dans la Modale de contact */
+        /****************************************** Lien du logo FishEye **/
+        const logos = document.querySelectorAll('.logo-fisheye')
+        logos.forEach(logo => isClickable(logo))
 
+        /****************************************** Nom dans la Modale de contact */
         const modalTitle = document.querySelector('.modal__title')
         modalTitle.textContent = `Contactez-moi ${nom}`
 
+
         //********************************************** */ Div header
         const header = document.querySelector(".hero__header");
-
         const divInfos = document.querySelector(".hero__infos");
 
         const h1 = document.createElement("h1");
@@ -100,7 +100,6 @@ export function photographerTemplate(data) {
         img.setAttribute("aria-label", `${nom}'s profile picture`);
 
         imgContainer.appendChild(img)
-
         header.appendChild(imgContainer);
 
         return header
@@ -109,6 +108,3 @@ export function photographerTemplate(data) {
     return { createUserCardDOM, createUserProfileDOM }
 
 }
-
-
-//photograph.html#id

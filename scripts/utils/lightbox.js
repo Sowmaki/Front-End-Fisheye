@@ -5,6 +5,8 @@ const lightboxCloseBtn = document.querySelector(".lightbox__closeBtn");
 let currentMediaIndex = 0; // Variable pour stocker l'index actuel
 let lightboxKeyListenerAdded = false; // Marqueur pour éviter d'ajouter plusieurs fois l'écouteur
 
+
+// Ouvre la Lightbox
 export function displayLightbox(mediaIndex) {
   const lightbox = document.getElementById('lightbox');
   const mediaList = document.querySelectorAll('.item__media');
@@ -14,7 +16,7 @@ export function displayLightbox(mediaIndex) {
   const nextButton = document.querySelector('.lightbox__next');
   nextButton.setAttribute('aria-label', 'Next image')
 
-  // Met à jour l'index actuel
+  // Stocke l'index actuel
   currentMediaIndex = mediaIndex;
 
   // Affiche la lightbox
@@ -44,7 +46,7 @@ export function displayLightbox(mediaIndex) {
     lightboxMedia.appendChild(video);
   }
 
-  // Ajouter le titre
+  // Ajoute le titre
   const container = media.closest('.item');
   const mediaTitle = container.querySelector('.item__title');
   const title = document.createElement("h2");
@@ -56,7 +58,7 @@ export function displayLightbox(mediaIndex) {
   }
   lightbox.appendChild(title);
 
-  // Ajouter la navigation entre les médias
+  // Ajoute la navigation entre les médias
   prevButton.onclick = () => {
     currentMediaIndex = currentMediaIndex === 0 ? mediaList.length - 1 : currentMediaIndex - 1;
     displayLightbox(currentMediaIndex);
@@ -69,7 +71,7 @@ export function displayLightbox(mediaIndex) {
     nextButton.focus();
   };
 
-  // Navigation clavier (flèches gauche/droite + échap)
+  // Fonction de navigation avec le clavier (flèches gauche/droite + échap)
   const handleLightboxKeyNavigation = (event) => {
     if (event.key === "ArrowLeft") {
       currentMediaIndex = currentMediaIndex === 0 ? mediaList.length - 1 : currentMediaIndex - 1;
@@ -82,25 +84,25 @@ export function displayLightbox(mediaIndex) {
     }
   };
 
-  // Ajouter un seul écouteur global
+  // Ajoute un seul écouteur global
   if (!lightboxKeyListenerAdded) {
     document.addEventListener('keydown', handleLightboxKeyNavigation);
     lightboxKeyListenerAdded = true;
   }
 
-  // Fonction pour fermer la lightbox
+  // Ferme la lightbox
   const closeLightbox = () => {
     lightbox.style.display = 'none';
     main.style.display = 'grid';
     main.setAttribute("aria-hidden", "false");
     const container = media.closest('.item');
     const mediaLink = container.querySelector('.item__link');
-    mediaLink.focus(); // Met le focus sur l'image précédente
-    document.removeEventListener('keydown', handleLightboxKeyNavigation); // Nettoyer l'écouteur
+    mediaLink.focus(); // Met le focus sur l'image de la liste qui etait ouverte dans la lightbox
+    document.removeEventListener('keydown', handleLightboxKeyNavigation); // Nettoie l'écouteur
     lightboxKeyListenerAdded = false;
   };
 
-  // Bouton fermer la lightbox
+  // Bouton qui ferme la lightbox
   lightboxCloseBtn.onclick = (event) => {
     event.preventDefault();
     closeLightbox();
@@ -116,5 +118,6 @@ export function displayLightbox(mediaIndex) {
     isClickable(nextButton);
     nextButton.dataset.clickable = "true"; // Marque ce bouton comme déjà configuré
   }
+
   isClickable(lightboxCloseBtn);
 }

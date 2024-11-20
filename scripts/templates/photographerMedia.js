@@ -7,7 +7,8 @@ import { sortMedias } from "../utils/selector.js";
 
 function photographerMediasTemplate(data) {
 
-  function getUserMediasDOM() {
+  //Crée les éléments du DOM nécessaires à la liste de medias du photographe
+  function createUserMediasDOM() {
 
     const divMedias = document.createElement("section");
     divMedias.className = "medias";
@@ -17,13 +18,12 @@ function photographerMediasTemplate(data) {
 
     const mediasList = document.createElement("ul")
     mediasList.className = "medias-list";
-
     divMedias.appendChild(mediasList);
-
-    //on crée une variable qui compte le nombre de video pour les numéroter si il y en a plusieurs
+    //on crée une variable qui compte le nombre de medias de videos pour les numéroter si il y en a plusieurs
     let numMedia = 0;
     let numVideo = 0;
-    // Pour chaque élément (photo) du tableau, on crée un élément li contenant les "articles" et on l'ajoute à la liste ul qui contient ceci
+
+    // Crée les éléments DOM pour chaque media
     data.forEach((media, index) => {
       numMedia++
 
@@ -35,10 +35,9 @@ function photographerMediasTemplate(data) {
       mediaLink.setAttribute("href", "#")
       mediaLink.addEventListener('click', (event) => {
         event.preventDefault();
-        displayLightbox(index); // Passer l'index du média cliqué à la lightbox
+        displayLightbox(index); // Passe l'index du média cliqué à la lightbox
       });
       isClickable(mediaLink)
-
 
       const mediaTitle = document.createElement("p");
       mediaTitle.textContent = media.title;
@@ -48,35 +47,35 @@ function photographerMediasTemplate(data) {
       const itemBottom = document.createElement("div");
       itemBottom.className = "item__bottom";
 
-      const itemLikes = document.createElement('div')
-      itemLikes.classList.add('item__likesDiv')
-      const itemIcon = document.createElement('span')
-      itemIcon.classList.add('fa-solid', 'fa-heart')
-      itemIcon.setAttribute('aria-label', 'Aimer ce contenu. Cliquez pour augmenter le nombre de likes.')
-      itemIcon.tabIndex = 0
+      const likesDiv = document.createElement('div')
+      likesDiv.classList.add('item__likesDiv')
+
+      const likeIcon = document.createElement('span')
+      likeIcon.classList.add('fa-solid', 'fa-heart')
+      likeIcon.setAttribute('aria-label', 'Aimer ce contenu. Cliquez pour augmenter le nombre de likes.')
+      likeIcon.tabIndex = 0
       incrementLikes()
 
       const likes = document.createElement('span')
       likes.classList.add('item__likes')
       likes.textContent = `${media.likes}`
 
-      itemLikes.appendChild(likes)
-      itemLikes.appendChild(itemIcon)
-
+      likesDiv.appendChild(likes)
+      likesDiv.appendChild(likeIcon)
+      // Fonction qui augmente le nombre de likes du media ET le nombre de likes total quand on clique sur l'icone
       function incrementLikes() {
-        itemIcon.addEventListener('click', (event) => {
+        likeIcon.addEventListener('click', (event) => {
           event.preventDefault()
           media.likes++
           likes.textContent = `${media.likes}`
           likesSum++
           likesSpan.textContent = `${likesSum}`
         })
-        isClickable(itemIcon)
+        isClickable(likeIcon)
       }
 
-
       itemBottom.appendChild(mediaTitle)
-      itemBottom.appendChild(itemLikes)
+      itemBottom.appendChild(likesDiv)
 
       if (media.image) {
         const mediaImg = document.createElement("img");
@@ -86,20 +85,12 @@ function photographerMediasTemplate(data) {
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaImg);
       } else if (media.video) {
-
-        numVideo++  //incrémente numVideo
-
-        //on crée un span de description pour la video
-        const spanDescription = document.createElement("span");
-        spanDescription.id = `description${numVideo}`;
-        spanDescription.className = "item__description";
-        spanDescription.textContent = `${media.description}`
+        numVideo++
 
         const mediaVideo = document.createElement("video");
         mediaVideo.setAttribute("aria-labeledby", `item${numMedia}-title`)
         mediaVideo.classList.add("item__media")
         mediaVideo.src = `assets/photographers_medias/${media.photographerId}/${media.video}`;
-        // mediaVideo.controls = true; // Ajoute les contrôles de lecture de la vidéo
         mediaItem.appendChild(mediaLink);
         mediaLink.appendChild(mediaVideo);
 
@@ -108,16 +99,12 @@ function photographerMediasTemplate(data) {
 
       mediasList.appendChild(mediaItem);
       mediaItem.appendChild(itemBottom);
-
-
-      // const price = document.createElement("p");
-      // encart.appendChild(price);
-
     });
 
     divMedias.appendChild(mediasList);
 
-    sortMedias(data)
+    sortMedias(data)// Lance possibilité de trier les media une fois qu'ils sont tous dans le DOM
+
     //***************************************************Encart 
     // afficher le nombre total de likes dans l'encart
     const likesList = mediasList.querySelectorAll('.item__likes')
@@ -137,8 +124,7 @@ function photographerMediasTemplate(data) {
     const divLikes = document.querySelector('.encart__likes')
     divLikes.textContent === "" && divLikes.prepend(likesSpan)
 
-    //Afficher le prix du photographe dans l'encart
-
+    // Affiche le prix du photographe dans l'encart après l'avoir récupéré
     async function displayPhotographerPrice(id) {
       const encart = document.querySelector('.encart')
       const priceDiv = document.createElement('div')
@@ -150,43 +136,41 @@ function photographerMediasTemplate(data) {
         encart.appendChild(priceDiv)
       }
     }
-
     displayPhotographerPrice()
-
     return divMedias;
-
   };
 
-  return { getUserMediasDOM };
+  return { createUserMediasDOM };
 
 }
 
+// Affiche les medias et leurs données après les avoir créé 
 export async function displaymediasData(medias) {
   const main = document.querySelector("main"); //recupere l'endroit ou vont etre affichés les medias
   // supprime l'element medias du main s'il existe deja
   main.querySelector(".medias")?.remove()
-
-  const photographerMediasModel = photographerMediasTemplate(medias); //
-
-  const userMediasDOM = photographerMediasModel.getUserMediasDOM();
-  // const userLikesDOM = photographerMediasModel.getUserLikes()
+  // Variable contenant un modèle de liste de medias 
+  const photographerMediasModel = photographerMediasTemplate(medias);
+  // Variable contenant une liste créée à partir du modèle, prête à être intégrée dans la page
+  const userMediasDOM = photographerMediasModel.createUserMediasDOM();
   main.appendChild(userMediasDOM);
-  // likesDiv.prepend(userLikesDOM)
 }
 
 async function recupererMediasPhotographe(id) {
+  // récupère l'id du photoraphe dans l'URL
   const photographerID = parseInt(new URLSearchParams(location.search).get("id"))
-
+  // stocke l'objet récupéré par getPhotographers dans une variable
   const result = await getPhotographers();
-
+  // stocke tout ce que contient la clé média de cet objet dans une variable
   const photographerMedias = result.media
-
+  // stocke uniquement les éléments du tableau dont l'id photographe est conforme
   const selectedMedias = photographerMedias.filter(element => element.photographerId === photographerID)
 
   if (!selectedMedias) {
     alert(`Aucun media ne correspond à l'id ${id}`)
     return
   }
+  // Appel de la fonction permettant d'afficher les éléments récupérés avec le bon pattern.
   displaymediasData(selectedMedias)
 }
 

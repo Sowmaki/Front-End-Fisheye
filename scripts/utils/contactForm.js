@@ -6,20 +6,19 @@ const modalCloseBtn = document.querySelector(".modal__closeBtn")
 const modalOpenBtn = document.querySelector(".contact__button")
 const modalForm = document.querySelector(".modal__form");
 
+// Ouvre la modale du formulaire
 function displayModal() {
     main.setAttribute("aria-hidden", "true");
     main.style.opacity = '30%'
-    // modal.setAttribute('aria-hidden', 'false');
-    // modal.setAttribute("role", "dialog");
-    /**Au vu de l'utilisation de la balise <dialog>, pas besoin d'ajouter un rôle ARIA dialog 
-    ou d'autres attributs comme aria-hidden manuellement**/
     main.classList.add('no-scroll')
     modal.setAttribute("tabindex", "-1");
     modal.style.display = "flex";
     modalCloseBtn.focus()
-
+    /**Au vu de l'utilisation de la balise <dialog>, pas besoin d'ajouter un rôle ARIA dialog 
+        ou d'autres attributs comme aria-hidden manuellement**/
 }
 
+// Ferme la modale du formulaire
 function closeModal() {
     main.setAttribute("aria-hidden", "false");
     main.style.opacity = '100%'
@@ -28,14 +27,14 @@ function closeModal() {
     modal.style.display = "none";
 }
 
-//Ouvrir la modale
+// Ouvre la modale au clic sur le bouton "Contactez-moi"
 modalOpenBtn.addEventListener('click', (event) => {
     event.preventDefault()
     displayModal()
 });
 isClickable(modalOpenBtn)
 
-// Fermer la modale
+// Ferme la modale au clic sur la croix ou en pressant "echap"
 document.addEventListener("keydown", (event) => {
     event.key === "Escape" && closeModal()
 })
@@ -45,12 +44,11 @@ modalCloseBtn.addEventListener('click', (event) => {
     closeModal()
 });
 
-// Parametrage formulaire
+// Fonction de validation du formulaire
 function validateForm() {
     let isFormValid = true;
     const inputs = document.querySelectorAll("input, textarea")
     inputs.forEach((input) => {
-
         if (!input.checkValidity()) {
             element.setAttribute("aria-invalid", "true");
             invalidFeedback.style.display = "block"
@@ -67,7 +65,7 @@ function validateForm() {
     }
 }
 
-// Application de la fonction validateForm() à l'évènement de soumission du formulaire, et suppression de son comportement par defaut.
+// Applique la fonction validateForm() à l'évènement de soumission du formulaire, et supprime son comportement par defaut.
 modalForm.addEventListener('submit', (event) => {
     event.preventDefault();
     validateForm()
