@@ -1,14 +1,14 @@
-import { getPhotographers } from "../data.js";
+import { getAllPhotographers } from "../datas/data.js";
 import { photographerTemplate } from "../templates/photographer.js";
 
 // Recupère le paramètre id dans l'URL lde la page grace à la fonction URLSearchParams
 const id = parseInt(new URLSearchParams(location.search).get("id"))
 
 //Récupère le bon photographe dans le tableau du fichier .json
-async function recupererPhotographe() {
-  // Si l'objet retourné par getPhotographers() contient une propriété photographers, 
+async function getPhotographer() {
+  // Si l'objet retourné par getAllPhotographers() contient une propriété photographers, 
   // celle-ci est directement assignée à une variable photographers.
-  const { photographers } = await getPhotographers();
+  const { photographers } = await getAllPhotographers();
   // Parcourt le tableau photographers pour y TROUVER le photographe dont l'id est le même que notre variable id.
   const selectedPhotograph = photographers.find(photograph => photograph.id === id)
   // Stoppe la fonction si le bon photographe n'est pas retrouvé et lance une alerte pour l'utilisateur.
@@ -23,7 +23,7 @@ async function recupererPhotographe() {
 //Recupère le prix du photographe
 export async function getPhotographerPrice(photographerId) {
   photographerId = parseInt(new URLSearchParams(location.search).get("id"))
-  const { photographers } = await getPhotographers();
+  const { photographers } = await getAllPhotographers();
   const selectedPhotograph = photographers.find(photograph => photograph.id === photographerId)
   if (!selectedPhotograph) {
     alert(`Aucun photographe ne correspond à l'id ${photographerId}`)
@@ -45,6 +45,6 @@ const displayProfileData = (photographer) => {
   photographerMain.prepend(userProfileDOM);
 }
 
-recupererPhotographe()
+getPhotographer()
 
 

@@ -1,4 +1,4 @@
-import { options } from "../../data/options.js";
+import { options } from "../utils/options.js";
 
 // Crée les éléments du DOM nécessaires au sélecteur de tri
 export function selectorTemplates() {
@@ -55,8 +55,6 @@ export function selectorTemplates() {
       list.appendChild(optionElement); // Sinon, ajoutez simplement l'élément
     }
   });
-
-
 
   divTri.appendChild(list);
 }

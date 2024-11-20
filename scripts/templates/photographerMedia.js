@@ -1,4 +1,4 @@
-import { getPhotographers } from "../data.js";
+import { getAllPhotographers } from "../datas/data.js";
 import { getPhotographerPrice } from "../pages/photographer.js";
 import { isClickable } from "../utils/clickables.js";
 import { displayLightbox } from "../utils/lightbox.js";
@@ -156,11 +156,11 @@ export async function displaymediasData(medias) {
   main.appendChild(userMediasDOM);
 }
 
-async function recupererMediasPhotographe(id) {
+async function getMediasbyPhotographer(id) {
   // récupère l'id du photoraphe dans l'URL
   const photographerID = parseInt(new URLSearchParams(location.search).get("id"))
-  // stocke l'objet récupéré par getPhotographers dans une variable
-  const result = await getPhotographers();
+  // stocke l'objet récupéré par getAllPhotographers dans une variable
+  const result = await getAllPhotographers();
   // stocke tout ce que contient la clé média de cet objet dans une variable
   const photographerMedias = result.media
   // stocke uniquement les éléments du tableau dont l'id photographe est conforme
@@ -174,5 +174,5 @@ async function recupererMediasPhotographe(id) {
   displaymediasData(selectedMedias)
 }
 
-recupererMediasPhotographe()
+getMediasbyPhotographer()
 

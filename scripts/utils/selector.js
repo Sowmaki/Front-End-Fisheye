@@ -1,7 +1,7 @@
-import { options } from '../../data/options.js';
 import { displaymediasData } from '../templates/photographerMedia.js';
 import { selectorTemplates } from "../templates/selector.js";
 import { isClickable } from "./clickables.js";
+import { options } from './options.js';
 
 selectorTemplates() // importe tous les éléments du DOM créés au préalable
 
