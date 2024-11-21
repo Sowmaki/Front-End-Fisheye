@@ -6,7 +6,7 @@ FishEye est un site web qui permet aux photographes indépendants de présenter 
 ### Objectif
 
 Le site actuel de FishEye est obsolète et a besoin d'être remanié
-Construire un prototype fonctionnel d'un nouveau site web pour le présenter à FishEye.
+Construire un prototype fonctionnel et dynamique d'un nouveau site web pour le présenter à FishEye.
 Fournir tout le HTML, le CSS et le JavaScript nécessaires au prototype.
 Accent mis sur l'accessibilité et la modularité en utilisant des design patterns en Javascript.
 
