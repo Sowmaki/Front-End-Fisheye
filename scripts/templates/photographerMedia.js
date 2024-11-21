@@ -13,7 +13,6 @@ function photographerMediasTemplate(data) {
     const divMedias = document.createElement("section");
     divMedias.className = "medias";
 
-
     /*****************************************************MEDIAS */
 
     const mediasList = document.createElement("ul")
@@ -52,13 +51,15 @@ function photographerMediasTemplate(data) {
 
       const likeIcon = document.createElement('span')
       likeIcon.classList.add('fa-solid', 'fa-heart')
-      likeIcon.setAttribute('aria-label', 'Aimer ce contenu. Cliquez pour augmenter le nombre de likes.')
+      likeIcon.setAttribute('aria-label', 'Cliquez pour augmenter le nombre de likes.')
+      likeIcon.setAttribute('role', 'button')
       likeIcon.tabIndex = 0
       incrementLikes()
 
       const likes = document.createElement('span')
       likes.classList.add('item__likes')
       likes.textContent = `${media.likes}`
+      likes.setAttribute('aria-live', 'polite')
 
       likesDiv.appendChild(likes)
       likesDiv.appendChild(likeIcon)
@@ -105,7 +106,7 @@ function photographerMediasTemplate(data) {
 
     sortMedias(data)// Lance possibilité de trier les media une fois qu'ils sont tous dans le DOM
 
-    //***************************************************Encart 
+    //**********************************************************  Encart 
     // afficher le nombre total de likes dans l'encart
     const likesList = mediasList.querySelectorAll('.item__likes')
     let likesSum = 0

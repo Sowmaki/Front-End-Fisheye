@@ -32,13 +32,13 @@ export function selectorTemplates() {
 
     // Icône de la flèche pour le premier élément uniquement
     if (index === 0) {
-      const likeIcon = document.createElement('span');
-      likeIcon.tabIndex = 0;
-      likeIcon.classList.add('fa-solid', 'fa-chevron-down');
-      likeIcon.setAttribute('role', 'button')
-      likeIcon.setAttribute('aria-haspopup', 'listbox')
-      likeIcon.setAttribute('aria-expanded', 'false');//indique par defaut que la liste est fermée
-      optionContent.appendChild(likeIcon);
+      const arrowIcon = document.createElement('span');
+      arrowIcon.tabIndex = 0;
+      arrowIcon.classList.add('fa-solid', 'fa-chevron-down');
+      arrowIcon.setAttribute('role', 'button')
+      arrowIcon.setAttribute('aria-haspopup', 'listbox')
+      arrowIcon.setAttribute('aria-expanded', 'false');//indique par defaut que la liste est fermée
+      optionContent.appendChild(arrowIcon);
     }
 
     optionContent.prepend(optionText);
